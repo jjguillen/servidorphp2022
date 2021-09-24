@@ -8,7 +8,7 @@
 
 		
 			<?php
-				echo "Aquí vendría el código del ejercicio1 que estoy haciendo";
+				echo "Aquí se ejecutaría el código del ejercicio1";
 			?>
 
 
