@@ -9,7 +9,7 @@
     <title>Ejercicios DWESE</title>
 
     <!-- Bootstrap core CSS -->
-<link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link href="/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
