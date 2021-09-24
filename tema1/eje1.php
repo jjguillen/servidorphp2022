@@ -7,7 +7,10 @@
 
 		
 			<?php
-				echo "Aquí se ejecutaría el código del ejercicio1";
+				echo "Aquí se ejecutaría el código del ejercicio1". "<br>";
+				echo $_SERVER["DOCUMENT_ROOT"] . "<br>";
+				echo $_SERVER["HTTP_HOST"] . "<br>";
+				echo $_SERVER["HTTP_HOST"] . "<br>";
 			?>
 
 
