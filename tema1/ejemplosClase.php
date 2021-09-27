@@ -44,9 +44,7 @@
         echo "<br>";
 
         $nombre = "Javier";
-        echo "Mi nombre es {$nombre}";
-        echo "Mi moneda es el dólar €<br>";
-        echo "Salto<br>";
+        echo "Mi nombre es {$nombre}" . "Mi moneda es el dólar €<br>" . "Salto<br>";
 
         $nulo = null;
         echo $nulo;
@@ -55,6 +53,34 @@
         //Pregunta por si el valor de una variable es null
         if (is_null($nulo)) 
             echo "Null";
+
+        $numero = 4;
+        echo ($numero == 4) ? "es 4" : "esta vacia";
+            
+        echo "<br>";
+        ///////////// ARRAYS
+        $notas = array(4, 5, "hola", 3, true);
+        echo $notas[0];
+        echo $notas[4];
+
+        $nombres = ["Javier", "Fran", "Dani"];
+        echo $nombres[1];
+
+        //for
+        echo "<br>";
+        for($i = 0; $i<sizeof($nombres); $i++) {
+            echo $nombres[$i];
+        }
+
+        //Array asociativo
+        $form = ["nombre" => "Javier", "direccion" => "Su casa", "pais" => "España"];
+        echo $form["pais"];
+
+        //foreache
+        echo "<br>";
+        foreach($form as $clave => $valor) {
+            echo "$clave:$valor, ";
+        }
 
 
     ?>
