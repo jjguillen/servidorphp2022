@@ -12,8 +12,8 @@
 					</button>
 					<div class="collapse show" id="tema1">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="/tema1/eje1.php" class="link-dark rounded">Ejercicio 1</a></li>
-						<li><a href="/tema1/eje2.php" class="link-dark rounded">Ejercicio 2</a></li>
+						<li><a href="/tema1/ejemplosClase.php" class="link-dark rounded">Ejemplos Clase</a></li>
+						<li><a href="/tema1/eje1.php" class="link-dark rounded">Ejercicio 1</a></li>						
 					</ul>
 					</div>
 				</li>
