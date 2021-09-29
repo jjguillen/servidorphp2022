@@ -15,6 +15,8 @@
 						<li><a href="/tema1/ejemplosClase.php" class="link-dark rounded">Ejemplos Clase</a></li>
 						<li><a href="/tema1/eje1.php" class="link-dark rounded">Ejercicio 1</a></li>
 						<li><a href="/tema1/arrays.php" class="link-dark rounded">Arrays</a></li>						
+						<li><a href="/tema1/arrays2.php" class="link-dark rounded">Arrays 2</a></li>						
+						<li><a href="/tema1/cadenas.php" class="link-dark rounded">Cadenas</a></li>						
 					</ul>
 					</div>
 				</li>
