@@ -53,7 +53,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Alumnado
+                Alumnado IES
             </div>
 
             <!-- Nav Item - Charts -->
