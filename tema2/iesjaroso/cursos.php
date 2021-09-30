@@ -6,6 +6,14 @@
         array("nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
         array("nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
         array("nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
+        array("nombre" => "1DAW", "etapa" => "CFGS", "anio" => "2021"),
+        array("nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
+        array("nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
+        array("nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
+        array("nombre" => "1DAW", "etapa" => "CFGS", "anio" => "2021"),
+        array("nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
+        array("nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
+        array("nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
     )
 ?>
 
@@ -33,39 +41,17 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
+                                    <?php
+                                        foreach($cursos as $curso) {
+                                            echo "<tr>";
+                                            foreach($curso as $value) {
+                                                echo "<td>";
+                                                echo $value;
+                                                echo "</td>";
+                                            }
+                                            echo "</tr>";
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
