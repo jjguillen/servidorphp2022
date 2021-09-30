@@ -6,14 +6,12 @@
         array("nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
         array("nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
         array("nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
-        array("nombre" => "1DAW", "etapa" => "CFGS", "anio" => "2021"),
-        array("nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
-        array("nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
-        array("nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
-        array("nombre" => "1DAW", "etapa" => "CFGS", "anio" => "2021"),
-        array("nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
-        array("nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
-        array("nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
+        array("nombre" => "1º ESO", "etapa" => "ESO", "anio" => "2021"),
+        array("nombre" => "2º ESO", "etapa" => "ESO", "anio" => "2021"),
+        array("nombre" => "3º ESO", "etapa" => "ESO", "anio" => "2021"),
+        array("nombre" => "4º ESO", "etapa" => "ESO", "anio" => "2021"),
+        array("nombre" => "1º Bachillerato", "etapa" => "Bachillerato", "anio" => "2021"),
+        array("nombre" => "2º Bachillerato", "etapa" => "Bachillerato", "anio" => "2021"),
     )
 ?>
 
