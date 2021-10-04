@@ -7,7 +7,7 @@
 
 				<ul class="list-unstyled ps-0">
 				<li class="mb-1">
-					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tema1" aria-expanded="true">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tema1" aria-expanded="false">
 					TEMA 2
 					</button>
 					<div class="collapse show" id="tema1">
