@@ -54,7 +54,7 @@
                                     <?php
                                         foreach($alumnos as $alumno) {
                                             echo "<tr>";
-                                            foreach($alumno as $key => $value) {
+                                            foreach($alumno as $value) {
                                                 echo "<td>";
                                                 echo $value;
                                                 echo "</td>";
