@@ -36,6 +36,7 @@
 					<li><a href="/tema3/cookies.php" class="link-dark rounded">Cookies</a></li>
 					<li><a href="/tema3/sesiones.php" class="link-dark rounded">Sesiones</a></li>
 					<li><a href="/tema3/formulariosMejorados.php" class="link-dark rounded">Formularios mejorados</a></li>
+					<li><a href="/tema3/iesjaroso/index.php" class="link-dark rounded">IES Jaroso</a></li>												
 					</ul>
 					</div>
 				</li>
