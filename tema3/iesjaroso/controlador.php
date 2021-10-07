@@ -12,9 +12,9 @@
     //Has recibido un formulario o bien el login o el registro
     if ($_POST) {
 
-        //Vemos qué acción tenemos que tratar
+        //ACCIONES CON POST
         if (isset($_POST['accion'])) {
-            //Login
+            //LOGIN ------------------------------------------------------------------------
             if ($_POST['accion'] == "login") {
                 //Leer valor del email
                 if (isset($_POST['email'])) {
@@ -69,8 +69,9 @@
                 header("Location: home.php"); 
                 exit;
             } 
+            //FIN LOGIN --------------------------------------------------------------------
 
-            //Registro
+            //REGISTRO ---------------------------------------------------------------------
             if ($_POST['accion'] == "registro") {
                 //Leer valor del email
                 if (isset($_POST['email'])) {
@@ -104,8 +105,9 @@
                 exit;
 
             } 
+            //FIN REGISTRO ------------------------------------------------------------------
 
-            //Modificar alumno
+            //MODIFICAR ALUMNO --------------------------------------------------------------
             if ($_POST['accion'] == "modificarAlumno") {
                 $email = filtrado($_POST['email']);
                 for($i=0; $i<count($_SESSION['alumnos']); $i++) {
@@ -126,8 +128,50 @@
                 header("Location: alumnos.php"); 
                 exit;
             }
+            //FIN MODIFICAR ALUMNO ----------------------------------------------------------
 
-            //Modificar curso
+            //INSERTAR ALUMNO --------------------------------------------------------------
+            if ($_POST['accion'] == "insertarAlumno") {
+
+                $alumno['nombre'] = filtrado($_POST['nombre']);
+                $alumno['apellidos'] = filtrado($_POST['apellidos']);
+                $alumno['edad'] = filtrado($_POST['edad']);
+                $alumno['email'] = filtrado($_POST['email']);
+                $alumno['dni'] = filtrado($_POST['dni']);
+                $alumno['localidad'] = filtrado($_POST['localidad']);
+                $alumno['telefono'] = filtrado($_POST['telefono']);
+                $alumno['curso'] = filtrado($_POST['curso']);
+                $alumno['avatar'] = "";
+
+                //Metemos en la sesión
+                array_push($_SESSION['alumnos'],$alumno);
+
+                header("Location: alumnos.php"); 
+                exit;
+            }
+            //FIN INSERTAR ALUMNO ----------------------------------------------------------
+
+            //INSERTAR CURSO --------------------------------------------------------------
+            if ($_POST['accion'] == "insertarCurso") {
+
+                //Calculamos el mayor id
+                $id = max(array_column($_SESSION['cursos'],'id'));
+                $curso['id'] = $id+1;
+
+                $curso['nombre'] = filtrado($_POST['nombre']);
+                $curso['etapa'] = filtrado($_POST['etapa']);
+                $curso['anio'] = filtrado($_POST['anio']);
+
+                //Metemos en la sesión
+                array_push($_SESSION['cursos'],$curso);
+
+                header("Location: cursos.php"); 
+                exit;
+            }
+            //FIN INSERTAR CURSO ----------------------------------------------------------
+
+
+            //MODIFICAR CURSO ---------------------------------------------------------------
             if ($_POST['accion'] == "modificarCurso") {
                 $id = filtrado($_POST['id']);
                 for($i=0; $i<count($_SESSION['cursos']); $i++) {
@@ -143,19 +187,20 @@
 
                 header("Location: cursos.php"); 
                 exit;
-
             }
+            //FIN MODIFICAR CURSO -----------------------------------------------------------
 
         }
 
     }
 
 
-    //Acciones de alumnos y cursos
+    //ACCIONES de alumnos y cursos con GET
     if ($_GET) {
         //Ver qué acción se ha elegido
         if (isset($_GET['accion'])) {
-            //Acción borrar alumno
+
+            //BORRAR ALUMNO -----------------------------------------------------------------
             if ($_GET['accion'] == "borrarAlumno") {
                 $email = filtrado($_GET['email']);
 
@@ -176,15 +221,17 @@
                 header("Location: alumnos.php"); 
                 exit;
             }
+            //FIN BORRAR ALUMNO -------------------------------------------------------------
 
-            //Acción editar alumno
+            //EDITAR ALUMNO -----------------------------------------------------------------
             if ($_GET['accion'] == "editarAlumno") {
                 $email = filtrado($_GET['email']);
                 header("Location: editarAlumno.php?email=".$email); 
                 exit;
             }
+            //FIN EDITAR ALUMNO -------------------------------------------------------------
 
-            //Acción borrar curso
+            //BORRAR CURSO ------------------------------------------------------------------
             if ($_GET['accion'] == "borrarCurso") {
                 $id = filtrado($_GET['id']);
 
@@ -205,13 +252,15 @@
                 header("Location: cursos.php"); 
                 exit;
             }
+            //FIN BORRAR CURSO --------------------------------------------------------------
 
-            //Acción editar curso
+            //EDITAR CURSO ------------------------------------------------------------------
             if ($_GET['accion'] == "editarCurso") {
                 $id = filtrado($_GET['id']);
                 header("Location: editarCurso.php?id=".$id); 
                 exit;
             }
+            //FIN EDITAR CURSO --------------------------------------------------------------
 
         }
 

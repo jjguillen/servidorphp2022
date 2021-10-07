@@ -88,9 +88,7 @@
                         </select>    
                         </div>
 
-                        <!-- Esto va a ser para decidir si estamos tratando el login o el registro 
-                            desde el controlador 
-                        -->
+                        <!-- Esto va a ser para indicar la acción: modificar alumno -->
                         <input type="hidden" name="accion" value="modificarAlumno">
 
                         <div class='row'>

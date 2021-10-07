@@ -48,9 +48,7 @@
                         <input type="hidden" name="id" value="<?=$curso['id'];?>">
 
 
-                        <!-- Esto va a ser para decidir si estamos tratando el login o el registro 
-                            desde el controlador 
-                        -->
+                        <!-- Esto va a ser para indicar la acción: modificar curso -->
                         <input type="hidden" name="accion" value="modificarCurso">
 
                         <div class='row'>
