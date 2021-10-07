@@ -48,6 +48,20 @@
                           "telefono" => "677999555", "curso" => "2GA", "avatar" => ""),
                 );
 
+                //Metemos también los cursos en la sesión
+                $_SESSION['cursos']  = array(
+                    array("id" => 1, "nombre" => "1DAW", "etapa" => "CFGS", "anio" => "2021"),
+                    array("id" => 2, "nombre" => "2DAW", "etapa" => "CFGS", "anio" => "2021"),
+                    array("id" => 3, "nombre" => "1GA", "etapa" => "CFGM", "anio" => "2021"),
+                    array("id" => 4, "nombre" => "2GA", "etapa" => "CFGM", "anio" => "2021"),
+                    array("id" => 5, "nombre" => "1º ESO", "etapa" => "ESO", "anio" => "2021"),
+                    array("id" => 6, "nombre" => "2º ESO", "etapa" => "ESO", "anio" => "2021"),
+                    array("id" => 7, "nombre" => "3º ESO", "etapa" => "ESO", "anio" => "2021"),
+                    array("id" => 8, "nombre" => "4º ESO", "etapa" => "ESO", "anio" => "2021"),
+                    array("id" => 9, "nombre" => "1º Bachillerato", "etapa" => "Bachillerato", "anio" => "2021"),
+                    array("id" => 10, "nombre" => "2º Bachillerato", "etapa" => "Bachillerato", "anio" => "2021"),
+                );
+
 
                 //En el tema BBDD comprobaremos que es correcta la información
 
@@ -83,15 +97,7 @@
                     $especialidad = filtrado($_POST['especialidad']);                    
                 }
 
-                //echo "El email es: ".$email."<br>";
-                //echo "El password es: ".$password."<br>";
-                //echo "El nombre es: ".$nombre."<br>";
-                //echo "El ciudad es: ".$ciudad."<br>";
-                //echo "El estado es: ".$estado."<br>";
-                //echo "El especialidad es: ".$especialidad."<br>";
-
                 //Si no existe ya ese email en BBDD, lo insertaríamos
-
 
                 //Por ahora redirigimos a home.php (para que funcione quitar echos de antes)
                 header("Location: home.php"); 
@@ -118,6 +124,24 @@
                 }
 
                 header("Location: alumnos.php"); 
+                exit;
+            }
+
+            //Modificar curso
+            if ($_POST['accion'] == "modificarCurso") {
+                $id = filtrado($_POST['id']);
+                for($i=0; $i<count($_SESSION['cursos']); $i++) {
+                    if ($id == $_SESSION['cursos'][$i]['id']) {
+                        //Modificar                       
+                        $_SESSION['cursos'][$i]['nombre'] = filtrado($_POST['nombre']);
+                        $_SESSION['cursos'][$i]['etapa'] = filtrado($_POST['etapa']);
+                        $_SESSION['cursos'][$i]['anio'] = filtrado($_POST['anio']);
+                       
+                        break;                        
+                    }
+                }
+
+                header("Location: cursos.php"); 
                 exit;
 
             }
@@ -157,6 +181,35 @@
             if ($_GET['accion'] == "editarAlumno") {
                 $email = filtrado($_GET['email']);
                 header("Location: editarAlumno.php?email=".$email); 
+                exit;
+            }
+
+            //Acción borrar curso
+            if ($_GET['accion'] == "borrarCurso") {
+                $id = filtrado($_GET['id']);
+
+                //Borramos alumno de la sesión
+                //Lo buscamos en el array
+                for($i=0; $i<count($_SESSION['cursos']); $i++) {
+                    if ($id == $_SESSION['cursos'][$i]['id']) {
+                        //Borrar
+                        unset($_SESSION['cursos'][$i]);
+                    }
+                }
+                //Quitar huecos
+                $_SESSION['cursos'] = array_values($_SESSION['cursos']);
+
+                //Ir a BBDD y borrar ese curso
+
+                //Por ahora redirigimos a cursos.php después de borrar un curso
+                header("Location: cursos.php"); 
+                exit;
+            }
+
+            //Acción editar curso
+            if ($_GET['accion'] == "editarCurso") {
+                $id = filtrado($_GET['id']);
+                header("Location: editarCurso.php?id=".$id); 
                 exit;
             }
 

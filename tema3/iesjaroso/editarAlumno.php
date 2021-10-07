@@ -14,9 +14,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h2 class="h3 mb-2 text-gray-800">Editando alumno </h2>
-                    
+                   
 <?php
                 $email = filtrado($_GET['email']);
                 for($i=0; $i<count($_SESSION['alumnos']); $i++) {
@@ -27,6 +25,9 @@
 
 ?>
 
+                    <!-- Page Heading -->
+                    <h2 class="h3 mb-2 text-gray-800">Editando alumno <?=$email;?></h2>
+                    
 
                     <form action="controlador.php" method="post">                        
                         <div class="form-floating">
@@ -95,7 +96,7 @@
                         <div class='row'>
                             <div class='col-2'>
                                 <button class="w-100 btn btn-lg btn-primary mb-1 mt-1" type="submit">Modificar</button>
-                                <a href="registro.php"><button class="w-100 btn btn-lg btn-primary" type="reset">Limpiar</button></a>
+                                <button class="w-100 btn btn-lg btn-primary" type="reset">Deshacer</button>
                             </div>
                         </div>
                         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
