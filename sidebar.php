@@ -17,6 +17,7 @@
 						<li><a href="/tema2/arrays.php" class="link-dark rounded">Arrays</a></li>						
 						<li><a href="/tema2/arrays2.php" class="link-dark rounded">Arrays 2</a></li>						
 						<li><a href="/tema2/cadenas.php" class="link-dark rounded">Cadenas</a></li>		
+						<li><a href="/tema2/circulossvg.php" class="link-dark rounded">Circulos SVG</a></li>		
 						<li><a href="/tema2/fifo.php" class="link-dark rounded">Cola Fifo</a></li>		
 						<li><a href="/tema2/unsetYArray_values.php" class="link-dark rounded">unset y array_values</a></li>		
 						<li><a href="/tema2/iesjaroso/index.php" class="link-dark rounded">IES Jaroso</a></li>												

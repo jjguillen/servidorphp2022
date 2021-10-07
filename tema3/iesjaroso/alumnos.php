@@ -53,6 +53,9 @@
                                                         <a href='controlador.php?accion=borrarAlumno&email={$alumno['email']}'>
                                                             <i class='fas fa-fw fa-trash-alt'></i>
                                                         </a>
+                                                        <a href='controlador.php?accion=editarAlumno&email={$alumno['email']}'>
+                                                            <i class='fas fa-fw fa-user-edit'></i>
+                                                        </a>
                                                   </td>";
 
                                             echo "</tr>";

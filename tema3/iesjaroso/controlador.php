@@ -39,13 +39,13 @@
                           "telefono" => "686548774", "curso" => "1DAW", "avatar" => ""),
                     array("nombre" => "Luis", "apellidos" => "Flores Martín", "edad" => "32", 
                           "dni" => "48418851A", "email" => "luisito@gmail.com", "localidad" => "vera",
-                          "telefono" => "686548775", "curso" => "1DAW", "avatar" => ""),
+                          "telefono" => "686548775", "curso" => "2DAW", "avatar" => ""),
                     array("nombre" => "Sonia", "apellidos" => "Martín", "edad" => "20", 
                           "dni" => "48492155G", "email" => "soniam@gmail.com", "localidad" => "garrucha",
-                          "telefono" => "666555111", "curso" => "1DAW", "avatar" => ""),
+                          "telefono" => "666555111", "curso" => "1GA", "avatar" => ""),
                     array("nombre" => "Ana", "apellidos" => "García", "edad" => "19", 
                           "dni" => "41456780A", "email" => "anag@gmail.com", "localidad" => "mojacar",
-                          "telefono" => "677999555", "curso" => "1DAW", "avatar" => ""),
+                          "telefono" => "677999555", "curso" => "2GA", "avatar" => ""),
                 );
 
 
@@ -99,6 +99,28 @@
 
             } 
 
+            //Modificar alumno
+            if ($_POST['accion'] == "modificarAlumno") {
+                $email = filtrado($_POST['email']);
+                for($i=0; $i<count($_SESSION['alumnos']); $i++) {
+                    if (strcmp($email, $_SESSION['alumnos'][$i]['email']) == 0) {
+                        //Modificar                       
+                        $_SESSION['alumnos'][$i]['nombre'] = filtrado($_POST['nombre']);
+                        $_SESSION['alumnos'][$i]['apellidos'] = filtrado($_POST['apellidos']);
+                        $_SESSION['alumnos'][$i]['edad'] = filtrado($_POST['edad']);
+                        $_SESSION['alumnos'][$i]['dni'] = filtrado($_POST['dni']);
+                        $_SESSION['alumnos'][$i]['localidad'] = filtrado($_POST['localidad']);
+                        $_SESSION['alumnos'][$i]['telefono'] = filtrado($_POST['telefono']);
+                        $_SESSION['alumnos'][$i]['curso'] = filtrado($_POST['curso']);
+
+                        break;                        
+                    }
+                }
+
+                header("Location: alumnos.php"); 
+                exit;
+
+            }
 
         }
 
@@ -115,20 +137,26 @@
 
                 //Borramos alumno de la sesión
                 //Lo buscamos en el array
-                $alumnosAux = $_SESSION['alumnos'];
-                foreach($alumnosAux as $alumno) {
-                    if (strcmp($email,$alumno['email']) == 0) {
+                for($i=0; $i<count($_SESSION['alumnos']); $i++) {
+                    if (strcmp($email, $_SESSION['alumnos'][$i]['email']) == 0) {
                         //Borrar
-                        unset($alumno['email']);
+                        unset($_SESSION['alumnos'][$i]);
                     }
                 }
-                $_SESSION['alumnos'] = array_values($alumnosAux);
-
+                //Quitar huecos
+                $_SESSION['alumnos'] = array_values($_SESSION['alumnos']);
 
                 //Ir a BBDD y borrar ese alumno
 
                 //Por ahora redirigimos a alumnos.php después de borrar un alumno
                 header("Location: alumnos.php"); 
+                exit;
+            }
+
+            //Acción editar alumno
+            if ($_GET['accion'] == "editarAlumno") {
+                $email = filtrado($_GET['email']);
+                header("Location: editarAlumno.php?email=".$email); 
                 exit;
             }
 
