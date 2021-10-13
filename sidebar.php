@@ -34,7 +34,8 @@
 					<li><a href="/tema3/variablesGlobales.php" class="link-dark rounded">Variables Globales</a></li>
 					<li><a href="/tema3/ejemploPost.php" class="link-dark rounded">Ejemplo POST</a></li>
 					<li><a href="/tema3/getPost.php" class="link-dark rounded">Get y Post</a></li>
-					<li><a href="/tema3/cookies.php" class="link-dark rounded">Cookies</a></li>
+					<li><a href="/tema3/establecerCookie.php" class="link-dark rounded">Establecer Cookie</a></li>
+					<li><a href="/tema3/verCookie.php" class="link-dark rounded">Ver Cookie</a></li>
 					<li><a href="/tema3/sesiones.php" class="link-dark rounded">Sesiones</a></li>
 					<li><a href="/tema3/formulariosMejorados.php" class="link-dark rounded">Formularios mejorados</a></li>
 					<li><a href="/tema3/iesjaroso/index.php" class="link-dark rounded">IES Jaroso</a></li>												
