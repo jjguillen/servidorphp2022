@@ -9,10 +9,22 @@
 <body>
     
 <?php
-    echo "Contenido miCookie <br>";
-    echo $_COOKIE['miCookie'];
+    include "lib.php";
 
-    print_r($_COOKIE);
+    echo "Contenido miCookie encriptado <br>";
+    echo $_COOKIE['miCookie'];
+    echo "<br>";
+
+    $desencriptado = desencriptar($_COOKIE['miCookie'], $method, $clave, $iv);
+
+    echo "Contenido miCookie desencriptado <br>";
+    echo $desencriptado;
+    echo "<br>";
+
+    $misJuegos = explode("|", $desencriptado);
+
+
+
 ?>
 
 </body>
