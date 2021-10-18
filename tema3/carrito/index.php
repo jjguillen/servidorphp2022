@@ -77,7 +77,7 @@ ini_set("display_errors", 1);
                         if (isset($_SESSION['carrito'])) {
                             echo count($_SESSION['carrito']);
                         }
-                        ?>
+                    ?>
                 </label>
             </form>
         </div>
@@ -121,11 +121,11 @@ ini_set("display_errors", 1);
                 <div class="btn-group">
                   <form action="controlador.php" method="post">
                     <input type="hidden" name='id' value="<?=$producto['id']?>">
-                        <div class="form-group row">
-                            <div class="col-3">
+                        <div class='form-row row'>
+                            <div class="col-sm-5">
                                 <button type="submit" name='comprar' class="btn btn-outline-secondary">Comprar</button>
                             </div>
-                            <div class="col-3">
+                            <div class="col-sm-4">
                                 <input class="form-control input-sm" type="number" name="cantidad" value="1" min="1" max="20">
                             </div>
                         </div>
