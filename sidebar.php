@@ -38,6 +38,7 @@
 					<li><a href="/tema3/verCookie.php" class="link-dark rounded">Ver Cookie</a></li>
 					<li><a href="/tema3/sesiones.php" class="link-dark rounded">Sesiones</a></li>
 					<li><a href="/tema3/formulariosMejorados.php" class="link-dark rounded">Formularios mejorados</a></li>
+					<li><a href="/tema3/carrito/index.php" class="link-dark rounded">Carrito de la compra</a></li>
 					<li><a href="/tema3/iesjaroso/index.php" class="link-dark rounded">IES Jaroso</a></li>												
 					</ul>
 					</div>
