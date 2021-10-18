@@ -74,8 +74,8 @@ ini_set("display_errors", 1);
                 </button>
                 <label for="">
                     <?php
-                        if (isset($_SESSION['carrito']) {
-                            count($_SESSION['carrito']);
+                        if (isset($_SESSION['carrito'])) {
+                            echo count($_SESSION['carrito']);
                         }
                         ?>
                 </label>
