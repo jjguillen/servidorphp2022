@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 $productos = array(
     array("nombre" => "Nvidia 3080 GTX", "descripcion" => "lllal", "precio" => 2000, 
