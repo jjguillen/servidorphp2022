@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include ('lib/lib.php');
+include("./lib/lib.php");
 
    
 

@@ -86,7 +86,7 @@ session_start();
   </section>
 
 <?php
-    include ('lib/lib.php');
+    include("./lib/lib.php");
 ?>
 
 

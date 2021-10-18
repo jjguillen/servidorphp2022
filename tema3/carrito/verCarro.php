@@ -2,7 +2,7 @@
 session_start();
 //session_destroy();
 
-include ('lib/lib.php');
+include("./lib/lib.php");
 ?>
 
     <!doctype html>
