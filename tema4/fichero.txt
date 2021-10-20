@@ -1,0 +1,11 @@
+hello
+god
+world
+house
+dog
+spoon
+keyboard
+car
+chicken
+window
+roof

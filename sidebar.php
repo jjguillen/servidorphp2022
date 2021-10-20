@@ -50,7 +50,9 @@
 					</button>
 					<div class="collapse" id="tema4">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="#" class="link-dark rounded">Ejercicio 1</a></li>
+					<li><a href="/tema4/lecturaFicheros.php" class="link-dark rounded">Lectura Ficheros</a></li>
+					<li><a href="/tema4/escrituraFicheros.php" class="link-dark rounded">Escritura Ficheros</a></li>
+					<li><a href="/tema4/agenda/agenda.php" class="link-dark rounded">Agenda</a></li>
 					</ul>
 					</div>
 				</li>
