@@ -19,7 +19,7 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#" data-toggle="modal" data-target="#insertar">Insertar</a>
       </li>
-      <li><a href="#">Borrar todo</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#borrarTodo">Borrar todo</a></li>
     </ul>
   </div>
 </nav>
@@ -34,24 +34,30 @@
         <th scope="col">Apellidos</th>
         <th scope="col">Email</th>
         <th scope="col">Móvil</th>
+        <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
 
 <?php
     //Leer archivo de agenda. Array con un contacto por elemento
-    $agenda = explode("#",file_get_contents("agenda.txt"));
+    if (strlen(file_get_contents("agenda.txt") > 0)) {
+      $agenda = explode("#",file_get_contents("agenda.txt"));
+      foreach($agenda as $contacto) {
+          $valores = explode("|",$contacto);
 
-    foreach($agenda as $contacto) {
-        $valores = explode("|",$contacto);
-
-        echo "<tr>";
-        echo "<th scope='row'>{$valores[0]}</th>";
-        echo "<td>{$valores[1]}</td>";
-        echo "<td>{$valores[2]}</td>";
-        echo "<td>{$valores[3]}</td>";
-        echo "<td>{$valores[4]}</td>";
-        echo "</tr>";        
+          echo "<tr>";
+          echo "<th scope='row'>{$valores[0]}</th>";
+          echo "<td>{$valores[1]}</td>";
+          echo "<td>{$valores[2]}</td>";
+          echo "<td>{$valores[3]}</td>";
+          echo "<td>{$valores[4]}</td>";
+          echo "<td><a href='controlador.php?accion=borrar&id={$valores[0]}'>
+                      X
+                    </a>
+                </td>";
+          echo "</tr>";        
+      }
     }
 
 
@@ -111,6 +117,33 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="submit" name="insertar" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>   <!--Cerrar form -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="borrarTodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Borrar Contactos</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <form action='controlador.php' method='get'>
+            
+            <div class="form-group row">
+                <label for="movil" class="col-sm-10 col-form-label">¿Está seguro de esta acción?</label>
+            </div>
+                
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" name="borrarTodo" class="btn btn-primary">Sí</button>
       </div>
     </form>   <!--Cerrar form -->
     </div>
