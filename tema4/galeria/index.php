@@ -63,12 +63,22 @@
         </div>
       </section>
 
+
+
       <div class="album py-5 bg-light">
         <div class="container">
 
           <div class="row">
 
 <?php
+
+          if (isset($_GET['errores'])) {
+            echo "<p class='text-danger'>";
+            echo $_GET['errores'];
+            echo "</p>";
+          }
+
+
   $directorio = './portadas';
   $portadas  = scandir($directorio);
   foreach($portadas as $portada) {
