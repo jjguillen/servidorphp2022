@@ -54,6 +54,9 @@
 					<li><a href="/tema4/escrituraFicheros.php" class="link-dark rounded">Escritura Ficheros</a></li>
 					<li><a href="/tema4/agenda/agenda.php" class="link-dark rounded">Agenda</a></li>
 					<li><a href="/tema4/galeria/index.php" class="link-dark rounded">Galería (ej. subir archivos)</a></li>
+					<li><a href="/tema4/email/index.php" class="link-dark rounded">Email (no va en el centro)</a></li>
+					<li><a href="/tema4/carrito/index.php" class="link-dark rounded">Carrito con PDF</a></li>
+					
 					</ul>
 					</div>
 				</li>
