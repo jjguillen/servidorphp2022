@@ -320,7 +320,7 @@ class Dompdf
             @ini_set('pcre.jit', '0');
         }
 
-        $this->mbstringEncoding = mb_internal_encoding();
+        $this->mbstringEncoding = mb_internal_encoding('UTF-8');
         mb_internal_encoding('UTF-8');
     }
 
