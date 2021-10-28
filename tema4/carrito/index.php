@@ -15,13 +15,13 @@ ini_set("display_errors", 1);
     <meta name="generator" content="Hugo 0.88.1">
     <title>MI TIENDA</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    
+    <script src="js/jquery-3.6.0.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+   
     <!-- Favicons -->
 <meta name="theme-color" content="#7952b3">
 
@@ -58,11 +58,11 @@ ini_set("display_errors", 1);
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.php" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link px-2 text-white">Añadir Producto</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
           <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
           <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>        
+        </ul>               
 
         <div class="text-end">
             
@@ -107,6 +107,11 @@ ini_set("display_errors", 1);
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
 <?php
+
+    //Cargamos los productos que hay en la tienda desde store.txt
+    $productos = cargarProductos();
+
+    //Pintar los productos
     foreach($productos as $key => $producto) {
 
     
@@ -147,7 +152,46 @@ ini_set("display_errors", 1);
     </div>
   </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action='controlador.php' method='post' enctype="multipart/form-data">
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio (euros)</label>
+              <input type="number" class="form-control" id="precio" name="precio" min="0">
+            </div>
+            <div class="mb-3">
+              <label for="imagen" class="form-label">Imagen</label>
+              <input type="file" class="form-control" id="imagen" name="imagen">
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" name="nuevoProducto">Añadir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 </main>
+
 
 <footer class="text-muted py-5">
   <div class="container">

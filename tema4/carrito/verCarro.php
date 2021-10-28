@@ -5,7 +5,7 @@ session_start();
 include("./lib/lib.php");
 ?>
 
-    <!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,13 +15,13 @@ include("./lib/lib.php");
     <meta name="generator" content="Hugo 0.88.1">
     <title>MI TIENDA</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    
+    <script src="js/jquery-3.6.0.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+   
     <!-- Favicons -->
 <meta name="theme-color" content="#7952b3">
 
@@ -49,7 +49,6 @@ include("./lib/lib.php");
 
 
 <main>
-
 <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -59,11 +58,10 @@ include("./lib/lib.php");
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.php" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
           <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
           <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>        
+        </ul>               
 
         <div class="text-end">
             
@@ -85,6 +83,7 @@ include("./lib/lib.php");
       </div>
     </div>
   </header>
+
       
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
@@ -92,6 +91,7 @@ include("./lib/lib.php");
         <h1 class="fw-light">TIENDACOIN</h1>
         <p class="lead text-muted">Venta de tarjetas gráficas para minar</p>
       </div>
+      
     </div>
   </section>
 
@@ -112,6 +112,10 @@ include("./lib/lib.php");
             <tbody>
 
 <?php
+
+    //Cargamos los productos que hay en la tienda desde store.txt
+    $productos = cargarProductos();
+
     if (isset($_SESSION['carrito'])) {
         $total = 0;
         foreach($_SESSION['carrito'] as $key => $producto) {
@@ -152,7 +156,10 @@ include("./lib/lib.php");
             </tbody>
         </table>
 
-      
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comprar">
+        Comprar
+      </button>
+
     </div>
   </div>
 
@@ -167,6 +174,49 @@ include("./lib/lib.php");
   </div>
 </footer>
      
+
+
+<!-- Modal -->
+<div class="modal fade" id="comprar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Datos del pedido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action='controlador.php' method='post'>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="mb-3">
+              <label for="direccion" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="direccion" name="direccion">
+            </div>     
+            <div class="mb-3">
+              <label for="pais" class="form-label">País</label>
+              <input type="text" class="form-control" id="pais" name="pais">
+            </div> 
+            <div class="mb-3">
+              <label for="ciudad" class="form-label">Ciudad</label>
+              <input type="text" class="form-control" id="ciudad" name="ciudad">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" name="pdf">Comprar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
   </body>
 </html>
 

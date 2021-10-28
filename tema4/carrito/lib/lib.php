@@ -1,17 +1,16 @@
 <?php
 
-$productos = array(
-    array("nombre" => "Nvidia 3080 GTX", "descripcion" => "lllal", "precio" => 2000, 
-          "img" => "imgs/tg_1.jpg", "id" => 1),
-    array("nombre" => "Gigabyte 3090 GTX", "descripcion" => "lllal", "precio" => 3000, 
-          "img" => "imgs/tg_2.png", "id" => 2),
-    array("nombre" => "Asus 3080 Ti", "descripcion" => "lllal", "precio" => 2500, 
-          "img" => "imgs/tg_3.jpg", "id" => 3),
-    array("nombre" => "Amd RTX 6800", "descripcion" => "lllal", "precio" => 1800, 
-          "img" => "imgs/tg_4.jpg", "id" => 4),
-    array("nombre" => "Amd RTX 6900", "descripcion" => "lllal", "precio" => 2600, 
-          "img" => "imgs/tg_5.jpg", "id" => 5)
-);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+ //Función para filtrar los campos del formulario
+ function filtrado($datos){
+    $datos = trim($datos); // Elimina espacios antes y después de los datos
+    $datos = stripslashes($datos); // Elimina backslashes \
+    $datos = htmlspecialchars($datos); // Traduce caracteres especiales en entidades HTML
+    return $datos;
+}
 
 //Función que busca un id en un array asociativo
 function buscar($id, $productos) {
@@ -56,6 +55,97 @@ function update($id, $cant) {
 
 }
 
+function insertarProducto($nombre,$precio,$descripcion,$destino) {
+    //Sacamos el id mayor para al insertar poner un id nuevo
+    $agenda = explode("#",file_get_contents("store.txt"));
+    $mayor=0;
+    foreach($agenda as $contacto) {
+        $valores = explode("|",$contacto);
+        if ($valores[0] > $mayor)
+            $mayor = $valores[0];
+    }  
+    
+    //Añadir
+    if (strlen(file_get_contents("store.txt") > 0)) 
+        $producto = "#".($mayor+1)."|".$nombre."|".$precio."|".$destino."|".$descripcion;
+    else
+        //Insertar (primera vez)
+        $producto = ($mayor+1)."|".$nombre."|".$precio."|".$destino."|".$descripcion;
+
+    file_put_contents("store.txt",$producto,FILE_APPEND | LOCK_EX);
+
+}
+
+
+function cargarProductos() {
+    $productosReturn = array();
+
+    //Leer archivo de agenda. Array con un contacto por elemento
+    if (strlen(file_get_contents("store.txt") > 0)) {
+        $productos = explode("#",file_get_contents("store.txt"));
+        foreach($productos as $producto) {
+            $valores = explode("|",$producto);
+
+            $elemento = array( "id" => $valores[0], "nombre" => $valores[1], 
+                "precio" => $valores[2], "img" => $valores[3], "desc" => $valores[4] );
+
+            array_push($productosReturn, $elemento);
+        }
+    }
+
+    return $productosReturn;
+
+
+}
+
+
+
+function mandarEmail($fichero,$email,$nombre) {
+
+    
+    //Load Composer's autoloader
+    require 'vendor/autoload.php';
+    
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer(true);
+    
+    try {
+        //Server settings
+        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'jjavierguillen@gmail.com';                     //SMTP username
+        $mail->Password   = 'feaucnjdvdfdtakx';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    
+        //Recipients
+        $mail->setFrom('jjavierguillen@gmail.com', 'Javier');
+        $mail->addAddress($email, $nombre);     //Add a recipient
+        //$mail->addAddress('ellen@example.com');               //Name is optional
+        //$mail->addReplyTo('info@example.com', 'Information');
+        //$mail->addCC('cc@example.com');
+        //$mail->addBCC('bcc@example.com');
+    
+        //Attachments
+        //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        $mail->addAttachment($fichero, 'factura.pdf');    //Optional name
+    
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Factura de la tienda de tarjetas gráficas';
+        $mail->Body    = 'Gracias por su compra, Dios se lo pague!</b>';
+        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    
+        $mail->send();
+        //echo 'Message has been sent';
+    } catch (Exception $e) {
+        //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+    
+
+}
 
 
 
