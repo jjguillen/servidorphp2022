@@ -54,7 +54,7 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 mt-3">
         <div class="row">
             <label class="col col-form-label">Selecciona fecha:</label>
         </div>
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div class="col-lg-8">
+      <div class="col-lg-8 mt-3">
         <table class="table table-sm">
         <thead>
             <tr>
