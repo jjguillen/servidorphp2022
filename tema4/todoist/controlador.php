@@ -1,16 +1,11 @@
 <?php
-    //Función para filtrar los campos del formulario
-    function filtrado($datos){
-        $datos = trim($datos); // Elimina espacios antes y después de los datos
-        $datos = stripslashes($datos); // Elimina backslashes \
-        $datos = htmlspecialchars($datos); // Traduce caracteres especiales en entidades HTML
-        return $datos;
-    }
 
+include("lib.php");
 
-    //Leemos los datos del formulario de nueva tarea
+    //NUEVA TAREA
     if ($_POST) {
         if (isset($_POST['nuevaTarea'])) {
+            //Leemos los datos del formulario de nueva tarea
             $desc = filtrado($_POST['desc']);
             $fecha = filtrado($_POST['fecha']);
             $prioridad = filtrado($_POST['prioridad']);
@@ -31,6 +26,27 @@
             header("Location: index.php");
             exit;
 
+        }
+    }
+
+    //BORRAR TAREA
+    if($_GET){
+        if (isset($_GET['accion'])) {
+            if ($_GET['accion'] == 'borrar') {
+                $id = $_GET['id'];
+                //Leemos el archivo y lo volvemos a escribir excepto la línea
+                $tareas = leerArchivo();
+                file_put_contents("tasks.txt","", LOCK_EX); //Borrar todo
+                foreach($tareas as $tarea) {
+                    if ($tarea[0] != $id) {
+                        $tarea = $tarea[0] . "|" . $tarea[1] . "|" . $tarea[2] . "|" . $tarea[3];
+                        file_put_contents("tasks.txt",$tarea, FILE_APPEND | LOCK_EX);
+                    }
+                }
+                header("Location: index.php");
+                exit;
+
+            }
         }
     }
 
