@@ -21,7 +21,7 @@ include("lib.php");
             $id = $max+1;
 
             //Insertamos datos en una nueva línea en tasks.txt
-            $tarea = $id . "|" . $desc . "|" . $fecha . "|" . $prioridad . PHP_EOL;
+            $tarea = $id . "|" . $desc . "|" . $fecha . "|" . $prioridad . "|" . PHP_EOL;
             file_put_contents("tasks.txt",$tarea, FILE_APPEND | LOCK_EX);
             header("Location: index.php");
             exit;
@@ -39,7 +39,7 @@ include("lib.php");
                 file_put_contents("tasks.txt","", LOCK_EX); //Borrar todo
                 foreach($tareas as $tarea) {
                     if ($tarea[0] != $id) {
-                        $tarea = $tarea[0] . "|" . $tarea[1] . "|" . $tarea[2] . "|" . $tarea[3];
+                        $tarea = $tarea[0] . "|" . $tarea[1] . "|" . $tarea[2] . "|" . $tarea[3] . "|" . PHP_EOL;
                         file_put_contents("tasks.txt",$tarea, FILE_APPEND | LOCK_EX);
                     }
                 }
