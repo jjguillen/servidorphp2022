@@ -1,0 +1,4 @@
+1|Hacer práctica 1 DWESE|11/11/2021|Importante
+2|Estudiar Cliente|05/11/2021|Normal
+3|Jugar Battlefield|10/11/2021|Baja
+4|Trabajar servidor en casa|2021-11-10|Alta
