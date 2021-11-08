@@ -1,15 +1,6 @@
 <?php
 
-function leerArchivo() {
-    $tareas = array();
 
-    $lineasFichero = file("tasks.txt");
-    foreach($lineasFichero as $linea) {
-        array_push($tareas, explode("|",$linea));
-    }
-
-    return $tareas;
-}
 
 //Función para filtrar los campos del formulario
 function filtrado($datos){

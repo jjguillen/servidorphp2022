@@ -53,14 +53,30 @@
             <label class="col col-form-label">Selecciona fecha:</label>
         </div>
         <div class="row">
-            <form action='controlador.php' method='get'>
-                <input type='date' name='fecha'>
-                <input type="submit" value="Cambiar">
+            <form action='index.php' method='get'>
+                <input type='date' name='fecha' value='<?=$_GET['fecha'];?> '>
+                <input type="submit" name='porFecha' value="Cambiar">
             </form>
         </div>
       </div>
 
+<?php
+      include("lib.php");
+      include("modelo.php");
+
+      //Controlo que haya pinchado por fecha o no
+      $mensaje = "Todas las tareas";
+      if (isset($_GET['porFecha'])) {
+        $tareas = leerArchivo($_GET['fecha']);
+        $mensaje = "Tareas con fecha límite en ".$_GET['fecha'];
+      } else 
+        $tareas = leerArchivo("");
+
+?>
+
+      
       <div class="col-lg-8 mt-3">
+        <h3><?=$mensaje;?></h3>
         <table class="table table-sm">
         <thead>
             <tr>
@@ -74,8 +90,7 @@
         <tbody>
 
         <?php
-              include("lib.php");
-              $tareas = leerArchivo();
+              
               
               foreach($tareas as $tarea) {
                 //Comprobar fecha de la tarea
