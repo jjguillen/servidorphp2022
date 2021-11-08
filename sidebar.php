@@ -67,7 +67,8 @@
 					</button>
 					<div class="collapse" id="dashboard-collapse">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-						<li><a href="#" class="link-dark rounded">Ejercicio 1</a></li>
+						<li><a href="/tema5/todoist/index.php" class="link-dark rounded">Todoist</a></li>
+						<li><a href="/tema5/agenda/index.php" class="link-dark rounded">Agenda contactos</a></li>
 					</ul>
 					</div>
 				</li>
