@@ -69,6 +69,7 @@
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/tema5/todoist/index.php" class="link-dark rounded">Todoist</a></li>
 						<li><a href="/tema5/agenda/index.php" class="link-dark rounded">Agenda contactos</a></li>
+						<li><a href="/tema5/iesjaroso/index.php" class="link-dark rounded">IES Jaroso</a></li>
 					</ul>
 					</div>
 				</li>
