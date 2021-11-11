@@ -1,5 +1,6 @@
 <?php
     include "cabecera.php";
+    include "modelo.php";
 
 ?>
 
@@ -48,14 +49,15 @@
                         </div>
 
                         <div class="form-floating">
-                        <select name="curso">
+                        <select class="form-control" name="curso">
                             <?php
-                                $cursos = array("1DAW", "2DAW", "1GA", "2GA", "1LAB","2LAB");
+                                $cursos = leerCursos();
                                 foreach($cursos as $curso) {
-                                    echo "<option value='{$curso}'>{$curso}</option>";
+                                    echo "<option value='{$curso['id']}'>{$curso['nombre']}</option>";
                                 }                                
                             ?>
-                        </select>    
+                        </select>   
+                        <label for="floatingInput">Curso</label>  
                         </div>
 
                         <!-- Esto va a ser para indicar la acción: insertar alumno -->

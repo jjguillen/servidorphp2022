@@ -60,19 +60,27 @@ session_start();
                 Alumnado IES  
             </div>
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Alumnos -->
             <li class="nav-item">
                 <a class="nav-link" href="alumnos.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Alumnos</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Cursos -->
             <li class="nav-item">
                 <a class="nav-link" href="cursos.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Cursos</span></a>
             </li>
+
+            <!-- Nav Item - Partes -->
+            <li class="nav-item">
+                <a class="nav-link" href="partes.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Partes Disciplinarios</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

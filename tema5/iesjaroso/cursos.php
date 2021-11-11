@@ -1,7 +1,8 @@
 <?php
     include_once "cabecera.php";
+    include_once "modelo.php";
 
-    $cursos = $_SESSION['cursos'];
+    $cursos = leerCursos();
 ?>
 
 

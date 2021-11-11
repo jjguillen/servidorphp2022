@@ -1,6 +1,5 @@
 <?php
     session_start();
-
     include("modelo.php");
 
     //Función para filtrar los campos del formulario
@@ -88,21 +87,19 @@
 
             //MODIFICAR ALUMNO --------------------------------------------------------------
             if ($_POST['accion'] == "modificarAlumno") {
-                $email = filtrado($_POST['email']);
-                for($i=0; $i<count($_SESSION['alumnos']); $i++) {
-                    if (strcmp($email, $_SESSION['alumnos'][$i]['email']) == 0) {
-                        //Modificar                       
-                        $_SESSION['alumnos'][$i]['nombre'] = filtrado($_POST['nombre']);
-                        $_SESSION['alumnos'][$i]['apellidos'] = filtrado($_POST['apellidos']);
-                        $_SESSION['alumnos'][$i]['edad'] = filtrado($_POST['edad']);
-                        $_SESSION['alumnos'][$i]['dni'] = filtrado($_POST['dni']);
-                        $_SESSION['alumnos'][$i]['localidad'] = filtrado($_POST['localidad']);
-                        $_SESSION['alumnos'][$i]['telefono'] = filtrado($_POST['telefono']);
-                        $_SESSION['alumnos'][$i]['curso'] = filtrado($_POST['curso']);
+                $id = filtrado($_POST['id']);                
 
-                        break;                        
-                    }
-                }
+                $alumno['nombre'] = filtrado($_POST['nombre']);
+                $alumno['apellidos'] = filtrado($_POST['apellidos']);
+                $alumno['edad'] = filtrado($_POST['edad']);
+                $alumno['dni'] = filtrado($_POST['dni']);
+                $alumno['email'] = filtrado($_POST['email']);
+                $alumno['localidad'] = filtrado($_POST['localidad']);
+                $alumno['telefono'] = filtrado($_POST['telefono']);
+                $alumno['curso'] = filtrado($_POST['curso']);
+                $alumno['avatar'] = "vacío";
+
+                modificarAlumno($id, $alumno);
 
                 header("Location: alumnos.php"); 
                 exit;
@@ -123,7 +120,7 @@
                 $alumno['avatar'] = "";
 
                 //Metemos en la sesión
-                array_push($_SESSION['alumnos'],$alumno);
+                insertarAlumno($alumno);
 
                 header("Location: alumnos.php"); 
                 exit;
@@ -133,16 +130,12 @@
             //INSERTAR CURSO --------------------------------------------------------------
             if ($_POST['accion'] == "insertarCurso") {
 
-                //Calculamos el mayor id
-                $id = max(array_column($_SESSION['cursos'],'id'));
-                $curso['id'] = $id+1;
-
                 $curso['nombre'] = filtrado($_POST['nombre']);
                 $curso['etapa'] = filtrado($_POST['etapa']);
                 $curso['anio'] = filtrado($_POST['anio']);
 
-                //Metemos en la sesión
-                array_push($_SESSION['cursos'],$curso);
+                //Metemos en bbdd
+                insertarCurso($curso);
 
                 header("Location: cursos.php"); 
                 exit;
@@ -150,19 +143,38 @@
             //FIN INSERTAR CURSO ----------------------------------------------------------
 
 
+            //INSERTAR PARTE --------------------------------------------------------------
+            if ($_POST['accion'] == "insertarParte") {
+
+                $parte['usuario_id'] = filtrado($_POST['usuario_id']);
+                $parte['alumno_id'] = filtrado($_POST['alumno_id']);
+                $parte['fecha'] = filtrado($_POST['fecha']);
+                $parte['hora'] = filtrado($_POST['hora']);
+                $parte['asignatura'] = filtrado($_POST['asignatura']);
+                $parte['descripcion'] = filtrado($_POST['descripcion']);
+                $parte['gravedad'] = filtrado($_POST['gravedad']);
+                if (isset($parte['comunicado']))
+                    $parte['comunicado'] = 1;
+                else
+                    $parte['comunicado'] = 0;
+
+                //Metemos en bbdd
+                insertarParte($parte);
+
+                header("Location: partes.php"); 
+                exit;
+            }
+            //FIN INSERTAR PARTE ----------------------------------------------------------
+
+
             //MODIFICAR CURSO ---------------------------------------------------------------
             if ($_POST['accion'] == "modificarCurso") {
-                $id = filtrado($_POST['id']);
-                for($i=0; $i<count($_SESSION['cursos']); $i++) {
-                    if ($id == $_SESSION['cursos'][$i]['id']) {
-                        //Modificar                       
-                        $_SESSION['cursos'][$i]['nombre'] = filtrado($_POST['nombre']);
-                        $_SESSION['cursos'][$i]['etapa'] = filtrado($_POST['etapa']);
-                        $_SESSION['cursos'][$i]['anio'] = filtrado($_POST['anio']);
-                       
-                        break;                        
-                    }
-                }
+                $id = filtrado($_POST['id']); //viene del hidden del formulario
+                $curso['nombre'] = filtrado($_POST['nombre']);
+                $curso['etapa'] = filtrado($_POST['etapa']);
+                $curso['anio'] = filtrado($_POST['anio']);
+
+                modificarCurso($id, $curso);
 
                 header("Location: cursos.php"); 
                 exit;
@@ -181,18 +193,10 @@
 
             //BORRAR ALUMNO -----------------------------------------------------------------
             if ($_GET['accion'] == "borrarAlumno") {
-                $email = filtrado($_GET['email']);
+                $id = filtrado($_GET['id']);
 
-                //Borramos alumno de la sesión
-                //Lo buscamos en el array
-                for($i=0; $i<count($_SESSION['alumnos']); $i++) {
-                    if (strcmp($email, $_SESSION['alumnos'][$i]['email']) == 0) {
-                        //Borrar
-                        unset($_SESSION['alumnos'][$i]);
-                    }
-                }
-                //Quitar huecos
-                $_SESSION['alumnos'] = array_values($_SESSION['alumnos']);
+                //Borramos alumno
+                borrarAlumno($id);
 
                 //Ir a BBDD y borrar ese alumno
 
@@ -204,8 +208,8 @@
 
             //EDITAR ALUMNO -----------------------------------------------------------------
             if ($_GET['accion'] == "editarAlumno") {
-                $email = filtrado($_GET['email']);
-                header("Location: editarAlumno.php?email=".$email); 
+                $id = filtrado($_GET['id']);
+                header("Location: editarAlumno.php?id=".$id); 
                 exit;
             }
             //FIN EDITAR ALUMNO -------------------------------------------------------------
@@ -214,18 +218,8 @@
             if ($_GET['accion'] == "borrarCurso") {
                 $id = filtrado($_GET['id']);
 
-                //Borramos alumno de la sesión
-                //Lo buscamos en el array
-                for($i=0; $i<count($_SESSION['cursos']); $i++) {
-                    if ($id == $_SESSION['cursos'][$i]['id']) {
-                        //Borrar
-                        unset($_SESSION['cursos'][$i]);
-                    }
-                }
-                //Quitar huecos
-                $_SESSION['cursos'] = array_values($_SESSION['cursos']);
-
-                //Ir a BBDD y borrar ese curso
+                //Borramos alumno BBDD
+                borrarCurso($id);
 
                 //Por ahora redirigimos a cursos.php después de borrar un curso
                 header("Location: cursos.php"); 
@@ -240,6 +234,18 @@
                 exit;
             }
             //FIN EDITAR CURSO --------------------------------------------------------------
+
+            //BORRAR PARTE ------------------------------------------------------------------
+            if ($_GET['accion'] == "borrarParte") {
+                $id = filtrado($_GET['id']);
+
+                //Borrar parte BBDD
+                borrarParte($id);
+
+                header("Location: partes.php"); 
+                exit;
+            }
+            //FIN BORRAR PARTE --------------------------------------------------------------
 
         }
 

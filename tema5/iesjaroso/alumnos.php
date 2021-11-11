@@ -1,9 +1,9 @@
 <?php
     include "cabecera.php";
-    include "controlador.php";
+    include_once "modelo.php";
 
     //Mis alumnos en un array
-    $alumnos = leerAlumnos();
+    $alumnos = leerAlumnos();   
 
 ?>
 
@@ -53,10 +53,10 @@
                                             }
 
                                             echo "<td>
-                                                        <a href='controlador.php?accion=borrarAlumno&email={$alumno['email']}'>
+                                                        <a href='controlador.php?accion=borrarAlumno&id={$alumno['id']}'>
                                                             <i class='fas fa-fw fa-trash-alt'></i>
                                                         </a>
-                                                        <a href='controlador.php?accion=editarAlumno&email={$alumno['email']}'>
+                                                        <a href='controlador.php?accion=editarAlumno&id={$alumno['id']}'>
                                                             <i class='fas fa-fw fa-user-edit'></i>
                                                         </a>
                                                   </td>";

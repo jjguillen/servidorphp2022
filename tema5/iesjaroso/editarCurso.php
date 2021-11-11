@@ -1,5 +1,6 @@
 <?php
     include "cabecera.php";
+    include_once "modelo.php";
 
     //Función para filtrar los campos del formulario
     function filtrado($datos){
@@ -16,11 +17,7 @@
                     
 <?php
                 $id = filtrado($_GET['id']);
-                for($i=0; $i<count($_SESSION['cursos']); $i++) {
-                    if ($id == $_SESSION['cursos'][$i]['id']){
-                        $curso = $_SESSION['cursos'][$i];
-                    }
-                }
+                $curso = leerCurso($id);
 ?>
 
                     <!-- Page Heading -->
@@ -45,6 +42,7 @@
                         <label>Año</label>
                         </div>                        
                         
+                        <!--IMPORTANTE PARA QUE MODIFIQUE EL CURSO QUE ESTOY MOSTRANDO -->
                         <input type="hidden" name="id" value="<?=$curso['id'];?>">
 
 

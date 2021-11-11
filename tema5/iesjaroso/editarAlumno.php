@@ -1,5 +1,6 @@
 <?php
     include "cabecera.php";
+    include "modelo.php";
 
     //Función para filtrar los campos del formulario
     function filtrado($datos){
@@ -16,17 +17,14 @@
 
                    
 <?php
-                $email = filtrado($_GET['email']);
-                for($i=0; $i<count($_SESSION['alumnos']); $i++) {
-                    if (strcmp($email, $_SESSION['alumnos'][$i]['email']) == 0) {
-                        $alumno = $_SESSION['alumnos'][$i];
-                    }
-                }
+                
+                $id = filtrado($_GET['id']);
+                $alumno = leerAlumno($id);
 
 ?>
 
                     <!-- Page Heading -->
-                    <h2 class="h3 mb-2 text-gray-800">Editando alumno <?=$email;?></h2>
+                    <h2 class="h3 mb-2 text-gray-800">Editando alumno <?=$alumno['nombre'];?></h2>
                     
 
                     <form action="controlador.php" method="post">                        
@@ -55,12 +53,12 @@
                         </div>
 
                         <div class="form-floating">
-                        <input disabled type="email" name="email" class="form-control" 
+                        <input type="email" name="email" class="form-control" 
                                value="<?=$alumno['email'];?>" id="floatingInput">
                         <label for="floatingInput">Email</label>
                         </div>
 
-                        <input type='hidden' name='email' value='<?=$alumno['email'];?>'>
+                        <input type='hidden' name='id' value='<?=$alumno['id'];?>'>
 
                         <div class="form-floating">
                         <input type="text" name="localidad" class="form-control" 
@@ -75,17 +73,18 @@
                         </div>
 
                         <div class="form-floating">
-                        <select name="curso">
+                        <select class="form-control" name="curso">
                             <?php
-                                $cursos = array("1DAW", "2DAW", "1GA", "2GA", "1LAB","2LAB");
+                                $cursos = leerCursos();
                                 foreach($cursos as $curso) {
-                                    if (strcmp($alumno['curso'],$curso) == 0)
-                                        echo "<option value='{$curso}' selected>{$curso}</option>";
+                                    if ($alumno['curso'] == $curso['id'])
+                                        echo "<option value='{$curso['id']}' selected>{$curso['nombre']}</option>";
                                     else
-                                        echo "<option value='{$curso}'>{$curso}</option>";
+                                        echo "<option value='{$curso['id']}'>{$curso['nombre']}</option>";
                                 }                                
                             ?>
-                        </select>    
+                        </select>   
+                        <label for="floatingInput">Curso</label> 
                         </div>
 
                         <!-- Esto va a ser para indicar la acción: modificar alumno -->
