@@ -18,6 +18,7 @@
 --
 -- Table structure for table `usuarios`
 --
+USE iesjaroso;
 
 DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
