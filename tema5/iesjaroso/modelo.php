@@ -6,9 +6,11 @@ function conectar() {
         //Docker--------------------------------------------------------------------------
         //$dsn = "mysql:host=172.19.0.2;dbname=iesjaroso";            
         //$dbh = new PDO($dsn, "root", "root");
+
         //AwardSpace-----------------------------------------------------------------------
         //$dsn = 'mysql://2872262_daw:mjcrlvj#21@fdb22.awardspace.net:3306/2872262_daw';
         //$dbh = new PDO("mysql:host=fdb22.awardspace.net;port=3306;dbname=2872262_daw", "2872262_daw", "mjcrlvj#21");                  
+        
         //HEROKU ClearDB
         $dsn = "mysql:host=eu-cdbr-west-01.cleardb.com;dbname=heroku_018a230b0806159";            
         $dbh = new PDO($dsn, "b69183112217f1", "527d9782");
