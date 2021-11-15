@@ -12,7 +12,8 @@ function conectar() {
         //$dbh = new PDO($dsn, "2872262_daw", "mjcrlvj#21");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (PDOException $e){
-        echo $e->getMessage()+" "+$dsn;
+        echo $e->getMessage();
+        echo $dsn;
     }
 
     return $dbh;
