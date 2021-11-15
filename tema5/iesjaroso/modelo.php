@@ -1,5 +1,13 @@
 <?php
 
+ //Función para filtrar los campos del formulario
+ function filtrado($datos){
+    $datos = trim($datos); // Elimina espacios antes y después de los datos
+    $datos = stripslashes($datos); // Elimina backslashes \
+    $datos = htmlspecialchars($datos); // Traduce caracteres especiales en entidades HTML
+    return $datos;
+}
+
 function conectar() {
       //Abrir conexión BBDD -----------------------------------
       try {
@@ -10,10 +18,15 @@ function conectar() {
         //AwardSpace-----------------------------------------------------------------------
         //$dsn = 'mysql://2872262_daw:mjcrlvj#21@fdb22.awardspace.net:3306/2872262_daw';
         //$dbh = new PDO("mysql:host=fdb22.awardspace.net;port=3306;dbname=2872262_daw", "2872262_daw", "mjcrlvj#21");                  
-        
+
         //HEROKU ClearDB
-        $dsn = "mysql:host=eu-cdbr-west-01.cleardb.com;dbname=heroku_018a230b0806159";            
-        $dbh = new PDO($dsn, "b69183112217f1", "527d9782");
+        //$dsn = "mysql:host=eu-cdbr-west-01.cleardb.com;dbname=heroku_018a230b0806159";            
+        //$dbh = new PDO($dsn, "b69183112217f1", "527d9782");
+
+        //LOCALHOST
+        $dsn = "mysql:host=localhost;port=3306;dbname=iesjaroso";            
+        $dbh = new PDO($dsn, "usuario", "usuario");
+
 
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (PDOException $e){
@@ -125,6 +138,26 @@ function leerPartes() {
     return $partes;
 }
 
+//Leer partes de alumno
+function leerPartesAlumno($idAlumno) {
+    
+    $dbh = conectar();
+
+    //Consulta BBDD
+    $stmt = $dbh->prepare("SELECT partes.id,alumnos.nombre, alumnos.apellidos, partes.fecha, partes.hora,
+                            partes.asignatura, partes.gravedad, partes.descripcion, partes.comunicado
+                           FROM partes,alumnos,usuarios WHERE partes.alumno_id=alumnos.id AND
+                            partes.usuario_id=usuarios.id AND partes.alumno_id=?");
+
+    $stmt->bindValue(1,$idAlumno);
+    $stmt->execute();
+    $partes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    //Cerrar conexión
+    $dbh = null;
+    
+    return $partes;
+}
 
 ////Leer alumnos
 function leerAlumno($id) {
@@ -244,8 +277,19 @@ function modificarAlumno($id, $alumno) {
     $dbh = conectar();
 
     try {
-        //Insertar
-        $stmt = $dbh->prepare("UPDATE alumnos SET nombre=?, apellidos=?, edad=?, email=?, dni=?, localidad=?, telefono=?, curso=?, avatar=? WHERE id=?");
+        //Avatar
+        if ($alumno['avatar'] == "-") {
+            //Insertar
+            $stmt = $dbh->prepare("UPDATE alumnos SET nombre=?, apellidos=?, edad=?, email=?, dni=?, localidad=?, telefono=?, curso=? WHERE id=?");
+            $stmt->bindValue(9, $id);
+                        
+        } else {
+            //Insertar
+            $stmt = $dbh->prepare("UPDATE alumnos SET nombre=?, apellidos=?, edad=?, email=?, dni=?, localidad=?, telefono=?, curso=?, avatar=? WHERE id=?");
+            $stmt->bindValue(9, $alumno['avatar']);
+            $stmt->bindValue(10, $id);
+        }
+
         // Bind
         $stmt->bindValue(1, $alumno['nombre']);
         $stmt->bindValue(2, $alumno['apellidos']);
@@ -255,8 +299,6 @@ function modificarAlumno($id, $alumno) {
         $stmt->bindValue(6, $alumno['localidad']);
         $stmt->bindValue(7, $alumno['telefono']);
         $stmt->bindValue(8, $alumno['curso']);
-        $stmt->bindValue(9, $alumno['avatar']);
-        $stmt->bindValue(10, $id);
 
         // Ejecuta la consulta
         $stmt->execute();

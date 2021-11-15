@@ -12,7 +12,7 @@
                     <h2 class="h3 mb-2 text-gray-800">Nuevo alumno</h2>
                     
 
-                    <form action="controlador.php" method="post">                        
+                    <form action="controlador.php" method="post" enctype="multipart/form-data">                        
                         <div class="form-floating">
                         <input type="text" name="nombre" class="form-control">
                         <label for="floatingInput">Nombre</label>
@@ -59,6 +59,12 @@
                         </select>   
                         <label for="floatingInput">Curso</label>  
                         </div>
+
+                        <div class="form-floating">
+                                <input type="file" name="avatar" class="form-control">
+                                <label>Avatar</label>
+                        </div>
+
 
                         <!-- Esto va a ser para indicar la acción: insertar alumno -->
                         <input type="hidden" name="accion" value="insertarAlumno">

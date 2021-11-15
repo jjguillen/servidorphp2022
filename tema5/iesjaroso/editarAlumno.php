@@ -2,13 +2,7 @@
     include "cabecera.php";
     include "modelo.php";
 
-    //Función para filtrar los campos del formulario
-    function filtrado($datos){
-        $datos = trim($datos); // Elimina espacios antes y después de los datos
-        $datos = stripslashes($datos); // Elimina backslashes \
-        $datos = htmlspecialchars($datos); // Traduce caracteres especiales en entidades HTML
-        return $datos;
-    }
+ 
 ?>
 
 
@@ -27,7 +21,7 @@
                     <h2 class="h3 mb-2 text-gray-800">Editando alumno <?=$alumno['nombre'];?></h2>
                     
 
-                    <form action="controlador.php" method="post">                        
+                    <form action="controlador.php" method="post" enctype="multipart/form-data">                        
                         <div class="form-floating">
                         <input type="text" name="nombre" class="form-control" 
                                value="<?=$alumno['nombre'];?>" id="floatingInput">
@@ -85,6 +79,11 @@
                             ?>
                         </select>   
                         <label for="floatingInput">Curso</label> 
+                        </div>
+
+                        <div class="form-floating">
+                                <input type="file" name="avatar" class="form-control">
+                                <label>Avatar</label>
                         </div>
 
                         <!-- Esto va a ser para indicar la acción: modificar alumno -->

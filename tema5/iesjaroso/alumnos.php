@@ -49,9 +49,13 @@
                                     <?php
                                         foreach($alumnos as $alumno) {
                                             echo "<tr>";
-                                            foreach($alumno as $value) {
+                                            foreach($alumno as $key => $value) {
                                                 echo "<td>";
-                                                echo $value;
+                                                //Imagen
+                                                if ($key == 'avatar') {
+                                                    echo '<img width="50" src="data:image/jpeg;base64,'.base64_encode( $value ).'"/>';
+                                                } else 
+                                                    echo $value;
                                                 echo "</td>";
                                             }
 
@@ -61,6 +65,9 @@
                                                         </a>
                                                         <a href='controlador.php?accion=editarAlumno&id={$alumno['id']}'>
                                                             <i class='fas fa-fw fa-user-edit'></i>
+                                                        </a>
+                                                        <a href='controlador.php?accion=mostrarPartes&id={$alumno['id']}'>
+                                                            <i class='fas fa-file-powerpoint'></i>
                                                         </a>
                                                   </td>";
 

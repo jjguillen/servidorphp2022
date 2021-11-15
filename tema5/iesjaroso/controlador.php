@@ -2,14 +2,6 @@
     session_start();
     include("modelo.php");
 
-    //Función para filtrar los campos del formulario
-    function filtrado($datos){
-        $datos = trim($datos); // Elimina espacios antes y después de los datos
-        $datos = stripslashes($datos); // Elimina backslashes \
-        $datos = htmlspecialchars($datos); // Traduce caracteres especiales en entidades HTML
-        return $datos;
-    }
-
     //Has recibido un formulario o bien el login o el registro
     if ($_POST) {
 
@@ -97,7 +89,13 @@
                 $alumno['localidad'] = filtrado($_POST['localidad']);
                 $alumno['telefono'] = filtrado($_POST['telefono']);
                 $alumno['curso'] = filtrado($_POST['curso']);
-                $alumno['avatar'] = "vacío";
+
+                //Avatar
+                if (!empty($_FILES['avatar']['tmp_name'])) {
+                    $image = file_get_contents($_FILES['avatar']['tmp_name']);
+                    $alumno['avatar'] = $image;
+                } else 
+                    $alumno['avatar'] = "-";
 
                 modificarAlumno($id, $alumno);
 
@@ -117,13 +115,17 @@
                 $alumno['localidad'] = filtrado($_POST['localidad']);
                 $alumno['telefono'] = filtrado($_POST['telefono']);
                 $alumno['curso'] = filtrado($_POST['curso']);
-                $alumno['avatar'] = "";
+
+                //Avatar
+                $image = file_get_contents($_FILES['avatar']['tmp_name']);
+                $alumno['avatar'] = $image;
 
                 //Metemos en la sesión
                 insertarAlumno($alumno);
 
                 header("Location: alumnos.php"); 
                 exit;
+
             }
             //FIN INSERTAR ALUMNO ----------------------------------------------------------
 
@@ -246,6 +248,17 @@
                 exit;
             }
             //FIN BORRAR PARTE --------------------------------------------------------------
+
+
+             //MOSTRAR PARTES DE ALUMNO -----------------------------------------------------------------
+             if ($_GET['accion'] == "mostrarPartes") {
+                $id = filtrado($_GET['id']);
+
+                //Por ahora redirigimos a alumnos.php después de borrar un alumno
+                header("Location: partesAlumno.php?id={$id}"); 
+                exit;
+            }
+            //FIN MOSTRAR PARTES DE ALUMNO -------------------------------------------------------------
 
         }
 

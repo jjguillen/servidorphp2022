@@ -2,7 +2,12 @@
     include_once "cabecera.php";
     include_once "modelo.php";
 
-    $partes = leerPartes();
+    if (isset($_GET['id'])) {
+        $partes = leerPartesAlumno(filtrado($_GET['id']));
+    } else {
+        $partes = leerPartes();
+    }
+
 ?>
 
 
