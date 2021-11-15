@@ -7,7 +7,7 @@ function conectar() {
         //$dsn = "mysql:host=172.19.0.2;dbname=iesjaroso";            
         //$dbh = new PDO($dsn, "root", "root");
         //AwardSpace
-        $dsn = "mysql:host=fdb22.awardspace.net;dbname=2872262_daw";            
+        $dsn = "mysql:host=fdb22.awardspace.net;port=3306;dbname=2872262_daw";            
         $dbh = new PDO($dsn, "2872262_daw", "mjcrlvj#21");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (PDOException $e){
