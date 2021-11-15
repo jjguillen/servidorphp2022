@@ -153,7 +153,7 @@
                 $parte['asignatura'] = filtrado($_POST['asignatura']);
                 $parte['descripcion'] = filtrado($_POST['descripcion']);
                 $parte['gravedad'] = filtrado($_POST['gravedad']);
-                if (isset($parte['comunicado']))
+                if (isset($_POST['comunicado']))
                     $parte['comunicado'] = 1;
                 else
                     $parte['comunicado'] = 0;
