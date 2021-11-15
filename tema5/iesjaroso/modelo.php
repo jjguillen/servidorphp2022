@@ -7,10 +7,8 @@ function conectar() {
         //$dsn = "mysql:host=172.19.0.2;dbname=iesjaroso";            
         //$dbh = new PDO($dsn, "root", "root");
         //AwardSpace
-        $parts = (parse_url(getenv('DATABASE_URL') ?: 'mysql://2872262_daw:mjcrlvj#21@db22.awardspace.net:3306/2872262_daw'));
-        extract($parts);
-        $path = ltrim($path, "/");
-        $dbh = new PDO("mysql:host={$host};port={$port};dbname={$path}", "2872262_daw", "mjcrlvj#21");          
+        $dsn = 'mysql://2872262_daw:mjcrlvj#21@fdb22.awardspace.net:3306/2872262_daw';
+        $dbh = new PDO("mysql:host=fdb22.awardspace.net;port=3306;dbname=2872262_daw", "2872262_daw", "mjcrlvj#21");          
         //$dbh = new PDO($dsn, "2872262_daw", "mjcrlvj#21");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (PDOException $e){
