@@ -3,8 +3,8 @@
 function conectar() {
       //Abrir conexión BBDD -----------------------------------
       try {
-        $dsn = "mysql:host=localhost;dbname=iesjaroso";            
-        $dbh = new PDO($dsn, "usuario", "usuario");
+        $dsn = "mysql:host=172.19.0.2;dbname=iesjaroso";            
+        $dbh = new PDO($dsn, "root", "root");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (PDOException $e){
         echo $e->getMessage();

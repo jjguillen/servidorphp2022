@@ -1,8 +1,9 @@
 <?php
 
 function conectar() {
-      //Abrir conexión BBDD -----------------------------------
-      try {
+    //Abrir conexión BBDD -----------------------------------
+    $dbh=null;
+    try {
         $dsn = "mysql:host=localhost;dbname=prueba";            
         $dbh = new PDO($dsn, "usuario", "usuario");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
