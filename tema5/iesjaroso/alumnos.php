@@ -2,6 +2,9 @@
     include "cabecera.php";
     include_once "modelo.php";
 
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+
     //Mis alumnos en un array
     $alumnos = leerAlumnos();   
 
