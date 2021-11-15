@@ -8,7 +8,6 @@
 -- Table structure for table alumnos
 --
 
-USE iesjaroso;
 
 --
 -- Table structure for table cursos
