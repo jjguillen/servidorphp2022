@@ -3,11 +3,17 @@
 function conectar() {
       //Abrir conexión BBDD -----------------------------------
       try {
-        $dsn = "mysql:host=172.19.0.2;dbname=iesjaroso";            
-        $dbh = new PDO($dsn, "root", "root");
+        //Docker
+        //$dsn = "mysql:host=172.19.0.2;dbname=iesjaroso";            
+        //$dbh = new PDO($dsn, "root", "root");
+        //AwardSpace
+        $dsn = 'mysql://2872262_daw:mjcrlvj#21@fdb22.awardspace.net:3306/2872262_daw';
+        $dbh = new PDO("mysql:host=fdb22.awardspace.net;port=3306;dbname=2872262_daw", "2872262_daw", "mjcrlvj#21");          
+        //$dbh = new PDO($dsn, "2872262_daw", "mjcrlvj#21");
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     } catch (PDOException $e){
         echo $e->getMessage();
+        echo $dsn;
     }
 
     return $dbh;

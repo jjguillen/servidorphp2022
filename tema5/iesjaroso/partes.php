@@ -10,7 +10,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">PARTES
-                            <a href="insertarParte.php"><i class='fas fa-fw fa-plus-square'></i></a>
+                            <a href="insertarParte  .php"><i class='fas fa-fw fa-plus-square'></i></a>
                             </h6>
                         </div>
                         <div class="card-body">
@@ -46,9 +46,15 @@
                                     <?php
                                         foreach($partes as $parte) {
                                             echo "<tr>";
-                                            foreach($parte as $value) {
+                                            foreach($parte as $key => $value) {
                                                 echo "<td>";
-                                                echo $value;
+                                                if ($key == 'comunicado') {
+                                                    if ($value == 0)
+                                                        echo "No";
+                                                    else    
+                                                        echo "Si";
+                                                } else 
+                                                    echo $value;
                                                 echo "</td>";
                                             }
                                             echo "<td>

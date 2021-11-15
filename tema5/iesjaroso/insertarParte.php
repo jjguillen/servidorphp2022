@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="form-floating">
-                        <input type="checkbox" name="comunicado" class="form-check-input ml-1">
+                        <input type="radio" name="comunicado" value="1" class="form-radio-input ml-1">
                         <label class="ml-4">Comunicado a las familias</label>
                         </div>
 
