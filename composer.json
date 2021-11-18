@@ -1,5 +1,6 @@
 {
     "require": {
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "spipu/html2pdf": "^5.2"
     }
 }

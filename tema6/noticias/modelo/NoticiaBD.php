@@ -1,6 +1,4 @@
 <?php
-    include ("ConexionBD.php");
-    include ("Noticia.php");
 
     class NoticiaBD {
 
@@ -30,6 +28,25 @@
             $stmt->bindValue(":id", $id);
             // Ejecuta la consulta
             $stmt->execute();
+
+            ConexionBD::cerrar();
+        }
+
+        public static function insertNoticia($noticia) {
+            $conexion = ConexionBD::conectar("noticias");
+
+            try {
+                //Insertar
+                $stmt = $conexion->prepare("INSERT INTO noticias (encabezado, texto, fecha) VALUES (?, ?, ?)");
+                // Bind
+                $stmt->bindValue(1, $noticia->getEncabezado());
+                $stmt->bindValue(2, $noticia->getTexto());
+                $stmt->bindValue(3, $noticia->getFecha());
+                // Ejecuta la consulta
+                $stmt->execute();
+            } catch (PDOException $e){
+                echo $e->getMessage();
+            }
 
             ConexionBD::cerrar();
         }

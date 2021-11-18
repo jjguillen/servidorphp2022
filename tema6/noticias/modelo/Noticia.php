@@ -92,6 +92,11 @@
         {
                 return $this->id;
         }
+
+        //Se ejecuta automáticamente cuando accedo a una propiedad que no existe o no tengo permiso de un objeto
+        public function __set($name, $value) {
+                echo "Donde vas";
+        }
     }
 
 
