@@ -70,6 +70,12 @@
                 ControladorCarro::meter($id, $cant);
             }
 
+            //Quitar del carro
+            if ($_REQUEST['accion'] == "quitarCarro") {
+                $id = filtrado($_REQUEST['id']);
+                ControladorCarro::quitar($id);
+            }
+
         }
 
     }

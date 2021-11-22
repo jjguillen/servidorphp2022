@@ -43,5 +43,16 @@
         
         }
 
+        public static function quitar($id) {
+                           
+            $carro = unserialize($_SESSION['carrito']);
+            $carro->quitar($id);
+            $_SESSION['carrito'] = serialize($carro);
+            
+
+            $vistaC = new VistaCarro();
+            $vistaC->render($carro);
+        }
+
 
     }
