@@ -7,13 +7,9 @@
 --
 -- Table structure for table alumnos
 --
-<<<<<<< HEAD
 
 USE heroku_018a230b0806159;
 
-=======
-USE iesjaroso;
->>>>>>> 212b428f84b78e53a982b0f04852e55a5bd99586
 --
 -- Table structure for table cursos
 --
