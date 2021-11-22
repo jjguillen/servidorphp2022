@@ -82,6 +82,7 @@
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/tema6/ejemplos/index.php" class="link-dark rounded">Ejemplos</a></li>
 						<li><a href="/tema6/noticias/index.php" class="link-dark rounded">Noticias</a></li>
+						<li><a href="/tema6/carrito/index.php" class="link-dark rounded">Tienda y carrito</a></li>
 					</ul>
 					</div>
 				</li>
