@@ -8,6 +8,7 @@
 -- Table structure for table alumnos
 --
 
+USE heroku_018a230b0806159;
 
 --
 -- Table structure for table cursos
