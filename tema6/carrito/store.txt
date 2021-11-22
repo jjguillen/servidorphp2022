@@ -1,1 +1,0 @@
-1|Nvidia GTX 3080|1000|./imgs/productos/tg_1.jpg|Pedazo tarjeta#2|RTX 3090|1500|./imgs/productos/tg_3.jpg|Esta es mejor#3|Amd 6900|1200|./imgs/productos/tg_5.jpg|También tira
