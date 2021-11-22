@@ -10,7 +10,7 @@
 					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tema1" aria-expanded="false">
 					TEMA 2
 					</button>
-					<div class="collapse" id="tema1">
+					<div class="collapse" id="tema2">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/tema2/ejemplosClase.php" class="link-dark rounded">Ejemplos Clase</a></li>
 						<li><a href="/tema2/eje1.php" class="link-dark rounded">Ejercicio 1</a></li>
@@ -62,10 +62,10 @@
 				</li>
 
 				<li class="mb-1">
-					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tema5" aria-expanded="false">
 					TEMA 5
 					</button>
-					<div class="collapse" id="dashboard-collapse">
+					<div class="collapse" id="tema5">
 					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 						<li><a href="/tema5/todoist/index.php" class="link-dark rounded">Todoist</a></li>
 						<li><a href="/tema5/agenda/index.php" class="link-dark rounded">Agenda contactos</a></li>
@@ -73,6 +73,20 @@
 					</ul>
 					</div>
 				</li>
+
+				<li class="mb-1">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tema6" aria-expanded="false">
+					TEMA 6
+					</button>
+					<div class="collapse" id="tema6">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+						<li><a href="/tema6/ejemplos/index.php" class="link-dark rounded">Ejemplos</a></li>
+						<li><a href="/tema6/noticias/index.php" class="link-dark rounded">Noticias</a></li>
+						<li><a href="/tema6/carrito/index.php" class="link-dark rounded">Tienda y carrito</a></li>
+					</ul>
+					</div>
+				</li>
+
 
 				</ul>
 			</div>
