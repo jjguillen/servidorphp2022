@@ -45,16 +45,7 @@
 
             //Insertar producto
             if ($_REQUEST['accion'] == "nuevoProducto") {
-                $nombre = filtrado($_REQUEST['nombre']);
-                $precio = filtrado($_REQUEST['precio']);
-                $descripcion = filtrado($_REQUEST['descripcion']);
-
-                //Imagen
-                $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
-                
-                $producto = new Producto(0,$nombre,$precio, $imagen, $descripcion);
-                ControladorProductos::insertarProducto($producto);
-
+                ControladorProductos::insertarProducto();
             }
 
             //Mostrar carro
@@ -64,16 +55,17 @@
 
             //Añadir al carro
             if ($_REQUEST['accion'] == "addCarro") {
-                $id = filtrado($_REQUEST['id']);
-                $cant = filtrado($_REQUEST['cantidad']);
-
-                ControladorCarro::meter($id, $cant);
+                ControladorCarro::meter();
             }
 
             //Quitar del carro
-            if ($_REQUEST['accion'] == "quitarCarro") {
-                $id = filtrado($_REQUEST['id']);
-                ControladorCarro::quitar($id);
+            if ($_REQUEST['accion'] == "quitarCarro") {                
+                ControladorCarro::quitar();
+            }
+
+            //Comprar generando pdf
+            if ($_REQUEST['accion'] == "comprar") {
+                ControladorCarro::comprar();
             }
 
         }

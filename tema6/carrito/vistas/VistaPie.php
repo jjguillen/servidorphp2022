@@ -77,6 +77,7 @@
                           <label for="email" class="form-label">Email</label>
                           <input type="email" class="form-control" id="email" name="email">
                         </div> 
+                        <input type="hidden" name="accion" value="comprar">
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

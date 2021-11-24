@@ -2,8 +2,6 @@
 
     class ControladorCarro {       
 
-  
-
         public static function mostrarCarro() {
 
             $carro="";
@@ -22,7 +20,10 @@
 
         }
 
-        public static function meter($id,$cant) {
+        public static function meter() {
+            $id = filtrado($_REQUEST['id']);
+            $cant = filtrado($_REQUEST['cantidad']);
+
             $producto = ControladorProductos::getProducto($id);
 
             $carro="";
@@ -38,13 +39,15 @@
                 $_SESSION['carrito'] = serialize($carro);
             }
 
-            $vistaC = new VistaCarro();
-            $vistaC->render($carro);
+            //$vistaC = new VistaCarro();
+            //$vistaC->render($carro);
+            ControladorProductos::mostrarProductos();
         
         }
 
-        public static function quitar($id) {
-                           
+        public static function quitar() {
+            $id = filtrado($_REQUEST['id']);
+
             $carro = unserialize($_SESSION['carrito']);
             $carro->quitar($id);
             $_SESSION['carrito'] = serialize($carro);
@@ -55,4 +58,24 @@
         }
 
 
+        public static function comprar() {
+            $nombre = filtrado($_REQUEST['nombre']);
+            $direccion = filtrado($_REQUEST['direccion']);
+            $pais = filtrado($_REQUEST['pais']);
+            $ciudad = filtrado($_REQUEST['ciudad']);
+            $email = filtrado($_REQUEST['email']);
+            $carro = unserialize($_SESSION['carrito']);
+            
+
+            $vistaC = new VistaCarro();
+            $nombre = $vistaC->generarPDF($nombre, $direccion, $pais, $ciudad, $email, $carro);
+            $vistaC->renderFactura($nombre);
+        }
+
+        
+
+
     }
+
+    
+  
