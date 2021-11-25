@@ -8,93 +8,163 @@
 
         public function render($productos) {
 
-            $this->html = '
-            <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title>MI TIENDA</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <script src="js/jquery-3.6.0.min.js"></script>
-
-
-   
-    <!-- Favicons -->
-<meta name="theme-color" content="#7952b3">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-  </head>
-  <body>
-    
-
-
-<main>
-<header class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="index.php" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link px-2 text-white">Añadir Producto</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>               
-
-        <div class="text-end">
+            $this->html = '<!DOCTYPE html>
+            <html lang="en">
             
-            <form action="enrutador.php" method="get">
-                <input type="hidden" name="accion" value="mostrarCarro">
-                <button type="submit" class="btn btn-outline-light me-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                    </svg>
-                </button>
-                <label for="">
-
-                </label>
-            </form>
-        </div>
-      </div>
-    </div>
-  </header>
-
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">TIENDACOIN</h1>
-        <p class="lead text-muted">Venta de tarjetas gráficas para minar</p>
-      </div>
-    </div>
-  </section>';
+            <head>
+            
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <meta name="description" content="">
+                <meta name="author" content="">
+            
+                <title>IES JAROSO - ADMIN</title>
+            
+                <!-- Custom fonts for this template -->
+                <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+                <link
+                    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                    rel="stylesheet">
+            
+                <!-- Custom styles for this template -->
+                <link href="css/sb-admin-2.min.css" rel="stylesheet">
+            
+                <!-- Custom styles for this page -->
+                <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+            
+            </head>
+            
+            <body id="page-top">
+            
+                <!-- Page Wrapper -->
+                <div id="wrapper">
+            
+                    <!-- Sidebar -->
+                    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            
+                        <!-- Sidebar - Brand -->
+                        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="enrutador.php?accion=mostrarAlumnos">
+                            <div class="sidebar-brand-text mx-3">IES Jaroso - Admin</div>
+                        </a>
+            
+                        <!-- Divider -->
+                        <hr class="sidebar-divider my-0">
+            
+                        <!-- Nav Item - Dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Panel de Control</span></a>
+                        </li>
+            
+                        <!-- Divider -->
+                        <hr class="sidebar-divider">
+            
+                        <!-- Heading -->
+                        <div class="sidebar-heading">
+                            Alumnado IES  
+                        </div>
+            
+                        <!-- Nav Item - Alumnos -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="alumnos.php">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Alumnos</span></a>
+                        </li>
+            
+                        <!-- Nav Item - Cursos -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="cursos.php">
+                                <i class="fas fa-fw fa-table"></i>
+                                <span>Cursos</span></a>
+                        </li>
+            
+                        <!-- Nav Item - Partes -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="partes.php">
+                                <i class="fas fa-fw fa-table"></i>
+                                <span>Partes Disciplinarios</span></a>
+                        </li>
+            
+            
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+            
+                        <!-- Sidebar Toggler (Sidebar) -->
+                        <div class="text-center d-none d-md-inline">
+                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                        </div>
+            
+                    </ul>
+                    <!-- End of Sidebar -->
+            
+                    <!-- Content Wrapper -->
+                    <div id="content-wrapper" class="d-flex flex-column">
+            
+                        <!-- Main Content -->
+                        <div id="content">
+            
+                            <!-- Topbar -->
+                            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            
+                                <!-- Sidebar Toggle (Topbar) -->
+                                <form class="form-inline">
+                                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </form>
+            
+                                <!-- Topbar Search -->
+                                <form
+                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+            
+                                <!-- Topbar Navbar -->
+                                <ul class="navbar-nav ml-auto">                        
+            
+                                    <!-- Nav Item - User Information -->
+                                    <li class="nav-item dropdown no-arrow">
+                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">'.$_SESSION['usuario'].'</span>
+                                            <img class="img-profile rounded-circle"
+                                                src="img/undraw_profile.svg">
+                                        </a>
+                                        <!-- Dropdown - User Information -->
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                            aria-labelledby="userDropdown">
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Perfil
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Configuración
+                                            </a>                                
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="index.php" data-toggle="modal" data-target="#logoutModal">
+                                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Salir
+                                            </a>
+                                        </div>
+                                    </li>
+            
+                                </ul>
+            
+                            </nav>
+                            <!-- End of Topbar -->
+            
+            ';
 
             return $this->html;
         }

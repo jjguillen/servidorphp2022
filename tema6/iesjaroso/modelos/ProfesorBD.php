@@ -3,7 +3,7 @@
     class ProfesorBD {
 
         /**
-         * Obtiene todos los productos de la BD
+         * Comprueba que un usuario está logueado y su password es correcta
          */
         public static function checkLogin($email,$password) {
 

@@ -1,0 +1,21 @@
+.contenido {
+  width: 75%;
+  margin-left: 3%;
+}
+#presentacion {
+  font-size: 35px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.desarrollo {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#mapa {
+  width: 55%;
+  margin: 0 auto;
+  text-align: center;
+}
+#Pmapa {
+  font-size: 25px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

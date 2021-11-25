@@ -16,9 +16,8 @@
             $correcto = ProfesorBD::checkLogin($email,$password);
 
             if ($correcto==1) {
-                $alumnos = AlumnoBD::getAlumnos();
-                $vistaAlum = new VistaAlumno();
-                $vistaAlum->render($alumnos);
+                $_SESSION['usuario'] = $email;
+                ControladorAlumno::mostrarAlumnos();
             } else {
                 $vistaProf = new VistaProfesor();
                 $vistaProf->renderLogin("Usuario y/o contraseña no válido, pruebe de nuevo");

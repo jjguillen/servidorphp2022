@@ -39,6 +39,8 @@
         if (isset($_REQUEST['accion'])) {
 
             //Según la acción llamaremos a un método u otro del Controlador
+
+            //LOGIN, REGISTRO Y PROFESORES ----------------------------------------------
             if ($_REQUEST['accion'] == "inicio") {
                 ControladorProfesor::login();
             }
@@ -47,7 +49,23 @@
                 ControladorProfesor::checkLogin();
             }
 
-           
+            //ALUMNOS --------------------------------------------------------------------
+            if ($_REQUEST['accion'] == "mostrarAlumnos") {
+                ControladorAlumno::mostrarAlumnos();
+            }
+
+            if ($_REQUEST['accion'] == "borrarAlumno") {
+                ControladorAlumno::borrarAlumno();                
+            }
+
+            if ($_REQUEST['accion'] == "insertarAlumno") {
+                ControladorAlumno::insertarAlumno();                
+            }
+
+            if ($_REQUEST['accion'] == "insertarAlumnoBD") {
+                ControladorAlumno::insertarAlumnoBD();                
+            }
+
 
         }
 

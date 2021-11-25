@@ -9,99 +9,70 @@
         public function render($productos) {
 
             $this->html .= '
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Añadir Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="enrutador.php" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                          <label for="nombre" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
-                        <div class="mb-3">
-                          <label for="precio" class="form-label">Precio (euros)</label>
-                          <input type="number" class="form-control" id="precio" name="precio" min="0">
-                        </div>
-                        <div class="mb-3">
-                          <label for="imagen" class="form-label">Imagen</label>
-                          <input type="file" class="form-control" id="imagen" name="imagen">
-                        </div>
-                        <div class="mb-3">
-                          <label for="descripcion" class="form-label">Descripción</label>
-                          <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
-                        </div>         
-                    </div>
-                    <input type="hidden" name="accion" value="nuevoProducto">
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary" >Añadir</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
             </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="comprar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Datos del pedido</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="enrutador.php" method="post">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                          <label for="nombre" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre">
-                        </div>
-                        <div class="mb-3">
-                          <label for="direccion" class="form-label">Dirección</label>
-                          <input type="text" class="form-control" id="direccion" name="direccion">
-                        </div>     
-                        <div class="mb-3">
-                          <label for="pais" class="form-label">País</label>
-                          <input type="text" class="form-control" id="pais" name="pais">
-                        </div> 
-                        <div class="mb-3">
-                          <label for="ciudad" class="form-label">Ciudad</label>
-                          <input type="text" class="form-control" id="ciudad" name="ciudad">
-                        </div>
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Email</label>
-                          <input type="email" class="form-control" id="email" name="email">
-                        </div> 
-                        <input type="hidden" name="accion" value="comprar">
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary" name="pdf">Comprar</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <!-- End of Main Content -->
 
-            </main>
-            
-            
-            <footer class="text-muted py-5">
-              <div class="container">
-                <p class="float-end mb-1">
-                  <a href="#">Back to top</a>
-                </p>
-                <p class="mb-1">Tienda de gráficas para minar. Ejercicio DWESE 2021 - IES Jaroso</p>    
-              </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; IES Jaroso 2021</span>
+                    </div>
+                </div>
             </footer>
-                 
-              </body>
-            </html>';
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="index.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>';
 
             return $this->html;
         }

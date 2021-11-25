@@ -1,0 +1,64 @@
+body {
+  background-color: #aa5f39;
+  color: rgb(255, 255, 255);
+}
+.logotipo {
+  width: max-content;
+  height: fit-content;
+}
+.logotipo img {
+  float: left;
+  width: 150px;
+  height: 100px;
+}
+nav {
+  clear: both;
+  position: relative;
+  height: fit-content;
+}
+.contenido {
+  background-color: #a6826f;
+  float: left;
+  border: 1px solid black;
+  width: 22%;
+  height: fit-content;
+  padding-left: 10px;
+}
+.contenido h1 {
+  text-align: center;
+}
+.tipoContenido {
+  font-size: 18px;
+}
+.especificacion {
+  font-size: 12px;
+}
+.informacion {
+  clear: both;
+
+  margin-top: 5%;
+  position: relative;
+}
+.video {
+  float: right;
+}
+.desarrolloTienda {
+  float: left;
+  font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #aa7d39;
+}
+footer {
+  clear: both;
+  background-color: rgb(95, 84, 84);
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  padding: 50px;
+}
+h1 {
+  color: black;
+}
+a {
+  color: purple;
+}
