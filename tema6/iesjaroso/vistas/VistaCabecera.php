@@ -68,21 +68,21 @@
             
                         <!-- Nav Item - Alumnos -->
                         <li class="nav-item">
-                            <a class="nav-link" href="alumnos.php">
+                            <a class="nav-link" href="enrutador.php?accion=mostrarAlumnos">
                                 <i class="fas fa-fw fa-chart-area"></i>
                                 <span>Alumnos</span></a>
                         </li>
             
                         <!-- Nav Item - Cursos -->
                         <li class="nav-item">
-                            <a class="nav-link" href="cursos.php">
+                            <a class="nav-link" href="enrutador.php?accion=mostrarCursos">
                                 <i class="fas fa-fw fa-table"></i>
                                 <span>Cursos</span></a>
                         </li>
             
                         <!-- Nav Item - Partes -->
                         <li class="nav-item">
-                            <a class="nav-link" href="partes.php">
+                            <a class="nav-link" href="enrutador.php?accion=mostrarPartes">
                                 <i class="fas fa-fw fa-table"></i>
                                 <span>Partes Disciplinarios</span></a>
                         </li>

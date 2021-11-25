@@ -66,6 +66,43 @@
                 ControladorAlumno::insertarAlumnoBD();                
             }
 
+            if ($_REQUEST['accion'] == "editarAlumno") {
+                ControladorAlumno::editarAlumno();                
+            }
+
+            if ($_REQUEST['accion'] == "editarAlumnoBD") {
+                ControladorAlumno::editarAlumnoBD();                
+            }
+
+            //CURSOS --------------------------------------------------------------------
+            if ($_REQUEST['accion'] == "mostrarCursos") {
+                ControladorCurso::mostrarCursos();
+            }
+
+            if ($_REQUEST['accion'] == "borrarCurso") {
+                ControladorCurso::borrarCurso();                
+            }
+
+            if ($_REQUEST['accion'] == "insertarCurso") {
+                ControladorCurso::insertarCurso();                
+            }
+
+            if ($_REQUEST['accion'] == "insertarCursoBD") {
+                ControladorCurso::insertarCursoBD();                
+            }
+
+            if ($_REQUEST['accion'] == "editarCurso") {
+                ControladorCurso::editarCurso();                
+            }
+
+            if ($_REQUEST['accion'] == "editarCursoBD") {
+                ControladorCurso::editarCursoBD();                
+            }
+
+            //PARTES --------------------------------------------------------------------
+            if ($_REQUEST['accion'] == "mostrarPartes") {
+                ControladorParte::mostrarPartes();
+            }
 
         }
 
