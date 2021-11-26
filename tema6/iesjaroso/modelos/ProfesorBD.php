@@ -33,4 +33,47 @@
 
         }
 
+
+        public static function insertarProfesor($profesor) {
+            $conexion = ConexionBD::conectar("iesjaroso");
+
+            try {
+                //Insertar
+                $stmt = $conexion->prepare("INSERT INTO usuarios (email,password,nombre,ciudad,situacion,especialidad) VALUES (?, ?, ?, ?, ?, ?)");
+                // Bind
+                $stmt->bindValue(1, $profesor->getEmail());
+                $stmt->bindValue(2, $profesor->getPassword());
+                $stmt->bindValue(3, $profesor->getNombre());
+                $stmt->bindValue(4, $profesor->getCiudad());
+                $stmt->bindValue(5, $profesor->getSituacion());
+                $stmt->bindValue(6, $profesor->getEspecialidad());
+            
+                // Ejecuta la consulta
+                $stmt->execute();
+            } catch (PDOException $e){
+                echo $e->getMessage();
+            }
+
+            //Cerrar conexión
+            $dbh = null;
+        }
+
+        /**
+         * Obtiene todos los profesores de la BD
+         */
+        public static function getProfesores() {
+
+            $conexion = ConexionBD::conectar("iesjaroso");
+
+            //Consulta BBDD
+            $stmt = $conexion->prepare("SELECT * FROM usuarios");
+            $stmt->execute();
+            $resultado = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Profesor');
+
+            //Cerrar conexión
+            $dbh = null;
+
+            return $resultado;
+        }
+
     }

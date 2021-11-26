@@ -5,7 +5,7 @@ services:
     image: mariadb:10.6
     container_name: docker-mariadb
     environment:
-      MARIADB_DATABASE: tienda
+      MARIADB_DATABASE: iesjaroso
       MARIADB_USER: usuario
       MARIADB_PASSWORD: usuario
       MARIADB_ROOT_PASSWORD: root
@@ -25,7 +25,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./carrito:/var/www/html
+      - ./iesjaroso:/var/www/html
     depends_on:
       - mariadb
     

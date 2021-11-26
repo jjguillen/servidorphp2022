@@ -8,6 +8,11 @@
 
         public function render($productos) {
 
+            if (isset($_SESSION['usuario']))
+                $usuario = $_SESSION['usuario'];
+            else
+                $usuario = "";
+
             $this->html = '<!DOCTYPE html>
             <html lang="en">
             
@@ -136,7 +141,7 @@
                                     <li class="nav-item dropdown no-arrow">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">'.$_SESSION['usuario'].'</span>
+                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">'.$usuario.'</span>
                                             <img class="img-profile rounded-circle"
                                                 src="img/undraw_profile.svg">
                                         </a>

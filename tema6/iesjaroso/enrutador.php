@@ -49,6 +49,15 @@
                 ControladorProfesor::checkLogin();
             }
 
+            if ($_REQUEST['accion'] == "registro") {
+                ControladorProfesor::insertarProfesor();
+            }
+
+            if ($_REQUEST['accion'] == "insertarProfesorBD") {
+                ControladorProfesor::insertarProfesorBD();
+            }
+
+
             //ALUMNOS --------------------------------------------------------------------
             if ($_REQUEST['accion'] == "mostrarAlumnos") {
                 ControladorAlumno::mostrarAlumnos();
@@ -102,6 +111,18 @@
             //PARTES --------------------------------------------------------------------
             if ($_REQUEST['accion'] == "mostrarPartes") {
                 ControladorParte::mostrarPartes();
+            }
+
+            if ($_REQUEST['accion'] == "borrarParte") {
+                ControladorParte::borrarParte();                
+            }
+
+            if ($_REQUEST['accion'] == "insertarParte") {
+                ControladorParte::insertarParte();                
+            }
+
+            if ($_REQUEST['accion'] == "insertarParteBD") {
+                ControladorParte::insertarParteBD();                
             }
 
         }

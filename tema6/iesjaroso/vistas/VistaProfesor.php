@@ -112,6 +112,81 @@
         //Fin renderLogin -----------------------------------------------------
 
 
+        public function renderFormInsertar() {
+            //Cabecera
+            $vistaC = new VistaCabecera();
+            echo $vistaC->render("");
+
+            ?>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h2 class="h3 mb-2 text-gray-800">Profesor</h2>
+
+
+                <form action="enrutador.php" method="post">
+                    <img class="mb-4" src="img/iesjaroso.jpeg" alt="" width="72" height="85">
+                    <h1 class="h3 mb-3 fw-normal">Registro</h1>
+
+                    <div class="form-floating">
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="form-floating">
+                    <input type="text" name="nombre" class="form-control" id="floatingNombre" placeholder="Nombre">
+                    <label for="floatingNombre">Nombre</label>
+                    </div>
+                    <div class="form-floating">
+                    <input type="text" name="ciudad" class="form-control" id="floatingCiudad" placeholder="Ciudad">
+                    <label for="floatingCiudad">Ciudad</label>
+                    </div>
+                    <div class="form-floating">
+                      <select class="form-select" name="situacion" id="">
+                        <option value="1">Funcionario</option>
+                        <option value="2">Interino</option>
+                      </select>
+                    </div>
+                    <div class="form-floating">
+                      <select class="form-select" name="especialidad" aria-label="Default select example">
+                          <option value="lengua">Lengua</option>
+                          <option value="matematicas">Matemáticas</option>
+                          <option value="fisica">Física</option>
+                          <option value="ingles">Inglés</option>
+                          <option value="informatica">Informática</option>
+
+                      </select>
+                    </div>
+
+                  
+                    <input type="hidden" name="accion" value="insertarProfesorBD">
+            
+                    <div class='row'>
+                        <div class='col-2'>
+                            <button class="w-100 btn btn-lg btn-primary mb-1 mt-1" type="submit">Confirmar</button>
+                            <button class="w-100 btn btn-lg btn-primary" type="reset">Deshacer</button>
+                        </div>
+                    </div>
+                    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+                </form>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            <?php
+
+
+             //Pie
+             $vistaP = new VistaPie();
+             $this->html .= $vistaP->render("");
+ 
+             echo $this->html;
+        }
 
 
     }

@@ -3,7 +3,7 @@
     class Parte {
         protected $id;
         protected $alumno_id;
-        protected $curso_id;
+        protected $usuario_id;
         protected $fecha;
         protected $hora;
         protected $asignatura;
@@ -11,10 +11,10 @@
         protected $descripcion;
         protected $comunicado;
 
-        public function __construct($id="",$alumno_id="",$curso_id="",$fecha="",$hora="",$asignatura="",$gravedad="",$descripcion="",$comunicado="") {
+        public function __construct($id="",$alumno_id="",$usuario_id="",$fecha="",$hora="",$asignatura="",$gravedad="",$descripcion="",$comunicado="") {
             $this->id = $id;
             $this->alumno_id = $alumno_id;
-            $this->curso_id = $curso_id;
+            $this->usuario_id = $usuario_id;
             $this->fecha = $fecha;
             $this->hora = $hora;
             $this->asignatura = $asignatura;
@@ -66,21 +66,21 @@
         }
 
         /**
-         * Get the value of curso_id
+         * Get the value of usuario_id
          */ 
-        public function getCurso_id()
+        public function getUsuario_id()
         {
-                return $this->curso_id;
+                return $this->usuario_id;
         }
 
         /**
-         * Set the value of curso_id
+         * Set the value of usuario_id
          *
          * @return  self
          */ 
-        public function setCurso_id($curso_id)
+        public function setUsuario_id($usuario_id)
         {
-                $this->curso_id = $curso_id;
+                $this->usuario_id = $usuario_id;
 
                 return $this;
         }
