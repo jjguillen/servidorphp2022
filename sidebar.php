@@ -87,6 +87,18 @@
 					</div>
 				</li>
 
+				<li class="mb-1">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#tema6" aria-expanded="false">
+					TEMA 7
+					</button>
+					<div class="collapse" id="tema6">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+						<li><a href="/tema7/ejemplos/index.php" class="link-dark rounded">Ejemplos</a></li>
+						<li><a href="/tema7/noticias/index.php" class="link-dark rounded">Noticias</a></li>
+					</ul>
+					</div>
+				</li>
+
 
 				</ul>
 			</div>
