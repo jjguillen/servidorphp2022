@@ -6,8 +6,8 @@
         }
 
         public function render($noticias) {
-            include "cabecera.php";
-            echo "<form class='row g-3 needs-validation' action='enrutador.php' method='post'>";
+
+            echo "<form id='formNuevaNoticia' class='row g-3 needs-validation'>";
             echo "  <div class='col-md-10'>";
             echo "    <label class='form-label'>Encabezado</label>";
             echo "    <input type='text' class='form-control' name='encabezado' required>";
@@ -22,10 +22,10 @@
             echo "  </div>";
             echo "<input type='hidden' name='accion' value='crearNoticia'>";
             echo "  <div class='col-12'>";
-            echo "    <button class='btn btn-primary' type='submit'>Crear</button>";
+            echo "    <button accion='nuevaNoticia' class='btn btn-primary' type='submit'>Crear</button>";
             echo "  </div>";
             echo "</form>";
-            include "pie.php";
+
 
         }
 

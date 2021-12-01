@@ -41,9 +41,7 @@
                 $id = $_REQUEST['id'];
 
                 ControladorNoticia::borrarNoticia($id);
-
-                header("Location: enrutador.php?accion=inicio");
-                exit;
+                ControladorNoticia::mostrarNoticiasAjax();
             }
 
             //Nueva noticia

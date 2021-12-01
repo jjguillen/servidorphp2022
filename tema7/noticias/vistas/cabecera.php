@@ -13,4 +13,9 @@
     
     <div class="container">
     <h2>Noticias 24</h2>
+
+
+        <button id='bNuevaNoticia' accion='cargarForm' class='btn btn-primary mb-3'>Nueva</button>
+
+        <div id="ajax">
     

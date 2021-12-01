@@ -14,7 +14,7 @@
         public function crearMazo() {
             foreach($this->palos as $palo) {
                 foreach($this->numeros as $numero) {
-                    $carta = array("palo" => $palo, "numero" => $numero);
+                    $carta = array("palo" => $palo, "numero" => $numero); //new Carta($palo, $numero);
                     array_push($this->cartas, $carta);
                 }
             }
@@ -22,6 +22,7 @@
 
         }
 
+        //img/ 1Bastos.jpg   "img/".$carta->numero.$carta->palo.".jpg";
     }
 
 
