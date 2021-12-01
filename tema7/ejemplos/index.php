@@ -9,7 +9,7 @@
 </head>
 <body>
     
-    <h2>Ejemplo PHP + Async/Await/Fetch</h2>
+    <h2>Ejemplo PHP + Async/Await/Fetch, prueba desde Docker</h2>
 
     <button id='bEjemplo'>Ejemplo botón</button>
 
