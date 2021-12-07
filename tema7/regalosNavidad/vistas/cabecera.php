@@ -24,12 +24,13 @@
     
     <div class="navbar navbar-dark bg-danger box-shadow">
         <div class="container d-flex justify-content-between">
-        <a href="./index.php" class="navbar-brand d-flex align-items-center">
-            <strong>Mis regalos de navidad</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <a href="./index.php" class="navbar-brand d-flex align-items-center">
+                <strong>Mis regalos de navidad</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </div>
     </header>
@@ -39,8 +40,26 @@
         <div class="album py-5 bg-light">
             
             <div class="container">
-                <button type="button" class="btn btn-warning" id="nuevoRegalo">Nuevo regalo</button>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <button type="button" class="btn btn-warning" id="nuevoRegalo">Nuevo regalo</button>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" placeholder="Buscar" aria-label="Search">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
 
+                
                 <div class="container mt-3" id="contenido"></div>
 
             
@@ -115,6 +134,26 @@
                 document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
             }
 
+            //Botón EDITAR. Con closest buscamos el botón dentro del div 'ajax' más cercano a la ocurrencia del evento click
+            let botonEditar = e.target.closest("button[accion=editarRegalo]");
+		    if (botonEditar) {
+                const datos = new FormData(); //Lo mandamos siempre con POST
+                datos.append("accion","editarRegalo"); //Acción para que PHP sepa de donde vienen la petición HTTP
+                datos.append("id",botonEditar.value);
+                
+                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
+                document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista
+		    }
+
+            //Form EDITAR
+            let enviarFormEditar = e.target.closest("button[accion=modificarRegalo]");
+            if (enviarFormEditar) {
+                const datos = new FormData(document.getElementById("nuevoRegaloForm")); //Lo mandamos siempre con POST
+                datos.append("accion","modificarRegalo"); 
+                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
+                //Tratar la respuesta
+                document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
+            }
 
         });
         //Fin botón borrar noticia ---------------------------------

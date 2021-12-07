@@ -51,12 +51,21 @@
                 ControladorRegalo::nuevoRegaloForm();
             }
 
-             //Insertar regalo
-             if ($_REQUEST['accion'] == "insertarRegalo") {
+            //Insertar regalo
+            if ($_REQUEST['accion'] == "insertarRegalo") {
                 ControladorRegalo::insertarRegalo();
             }
 
-           
+            //Editar regalo
+            if ($_REQUEST['accion'] == "editarRegalo") {
+                ControladorRegalo::editarRegaloForm();
+            }
+
+             //Modificar regalo
+             if ($_REQUEST['accion'] == "modificarRegalo") {
+                ControladorRegalo::modificarRegalo();
+            }
+
 
         }
     }

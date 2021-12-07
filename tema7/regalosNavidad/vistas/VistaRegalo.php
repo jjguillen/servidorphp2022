@@ -33,7 +33,8 @@
                 echo "<td>{$regalo->getEstado()}</td>";
                 echo "<td>";
                 
-                echo "<button id='borrarRegalo' accion='borrarRegalo' value='{$regalo->getId()}' class='btn btn-danger'>X</button>";
+                echo "<button id='borrarRegalo' accion='borrarRegalo' value='{$regalo->getId()}' class='btn btn-danger m-1'>X</button>";
+                echo "<button id='editarRegalo' accion='editarRegalo' value='{$regalo->getId()}' class='btn btn-danger m-1'>E</button>";
                 
                 echo "</a></td>";
                 echo "</tr>";
