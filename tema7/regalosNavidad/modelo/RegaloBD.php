@@ -87,7 +87,22 @@
             ConexionBD::cerrar();
         }
 
+        public static function getRegalosBusqueda($texto) {
+            $conexion = ConexionBD::conectar("regalosNavidad");
 
+            //Consulta BBDD
+            $stmt = $conexion->prepare("SELECT * FROM regalos WHERE nombre LIKE ? OR destinatario LIKE ?");
+            $stmt->bindValue(1,"%$texto%");
+            $stmt->bindValue(2,"%$texto%");
+            $stmt->execute();
+
+            //Usamos FETCH_CLASS para que convierta a objetos las filas de la BD
+            $regalos = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Regalo');
+
+            ConexionBD::cerrar();
+
+            return $regalos;
+        }
 
 
 

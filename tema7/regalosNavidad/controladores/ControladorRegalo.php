@@ -60,6 +60,14 @@
             ControladorRegalo::mostrarRegalos();
         }
 
+        public static function buscarRegalo() {
+            $texto = filtrado($_REQUEST['texto']);
+            $regalos = RegaloBD::getRegalosBusqueda($texto);
+            $vistaR = new VistaRegalo();
+            $vistaR->renderRegalos($regalos);
+
+        }
+
         
 
     }

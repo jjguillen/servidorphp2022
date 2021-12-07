@@ -42,27 +42,16 @@
             <div class="container">
                 
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 m-1">
                         <button type="button" class="btn btn-warning" id="nuevoRegalo">Nuevo regalo</button>
                     </div>
-                    <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <input class="form-control" type="text" placeholder="Buscar" aria-label="Search">
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-outline-success" type="submit">Buscar</button>
-                            </div>
-                        </div>
-                        
+                    <div class="col-md-3 m-1">
+                        <input class="form-control" type="text" placeholder="Buscar" aria-label="Search" name="buscar" id="buscar">
                     </div>
-                    
                 </div>
-
                 
+                <!-- Aquí metemos todo -->
                 <div class="container mt-3" id="contenido"></div>
-
-            
         </div>
 
     </main>
@@ -101,6 +90,23 @@
         });                
         //Tratar la respuesta
         document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista
+
+        //BOTÓN BUSCAR -----------------------------------------------------------------------------------------------
+        document.getElementById("buscar").addEventListener("keyup", async function(e) {
+            e.preventDefault();
+
+            let buscar = e.target;
+            const datos = new FormData(); //Lo mandamos siempre con POST
+            datos.append("accion","buscar"); //Acción para que PHP sepa de donde vienen la petición HTTP
+            datos.append("texto",buscar.value);
+            
+            const response = await fetch("enrutador.php", { //Fetch hace la petición
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                body: datos
+            });                
+            //Tratar la respuesta
+            document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista
+        });
 
 
         //ACCIONES DE LOS BOTONES ------------------------------------------------------------------------------------

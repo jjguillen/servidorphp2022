@@ -61,11 +61,15 @@
                 ControladorRegalo::editarRegaloForm();
             }
 
-             //Modificar regalo
-             if ($_REQUEST['accion'] == "modificarRegalo") {
+            //Modificar regalo
+            if ($_REQUEST['accion'] == "modificarRegalo") {
                 ControladorRegalo::modificarRegalo();
             }
 
+            //Buscar regalo
+            if ($_REQUEST['accion'] == "buscar") {
+                ControladorRegalo::buscarRegalo();
+            }
 
         }
     }
