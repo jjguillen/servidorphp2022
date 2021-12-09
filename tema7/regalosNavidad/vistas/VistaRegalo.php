@@ -35,6 +35,7 @@
                 
                 echo "<button id='borrarRegalo' accion='borrarRegalo' value='{$regalo->getId()}' class='btn btn-danger m-1'>X</button>";
                 echo "<button id='editarRegalo' accion='editarRegalo' value='{$regalo->getId()}' class='btn btn-danger m-1'>E</button>";
+                echo "<button id='editarRegalo' accion='verLinks' value='{$regalo->getId()}' class='btn btn-danger m-1'>L</button>";
                 
                 echo "</a></td>";
                 echo "</tr>";

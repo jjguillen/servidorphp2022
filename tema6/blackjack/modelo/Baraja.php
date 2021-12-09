@@ -17,7 +17,7 @@
 
         public function pintarBaraja() {
             foreach($this->cartas as $carta) {
-                echo $carta["palo"]." - ".$carta["numero"]."<br>";
+                echo $carta->getPalo()." - ".$carta->getFigura()."<br>";
             }
         }
 

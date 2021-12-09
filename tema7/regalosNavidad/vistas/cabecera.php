@@ -136,7 +136,6 @@
                 const datos = new FormData(document.getElementById("nuevoRegaloForm")); //Lo mandamos siempre con POST
                 datos.append("accion","insertarRegalo"); 
                 const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
-                //Tratar la respuesta
                 document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
             }
 
@@ -146,7 +145,6 @@
                 const datos = new FormData(); //Lo mandamos siempre con POST
                 datos.append("accion","editarRegalo"); //Acción para que PHP sepa de donde vienen la petición HTTP
                 datos.append("id",botonEditar.value);
-                
                 const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
                 document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista
 		    }
@@ -157,7 +155,16 @@
                 const datos = new FormData(document.getElementById("nuevoRegaloForm")); //Lo mandamos siempre con POST
                 datos.append("accion","modificarRegalo"); 
                 const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
-                //Tratar la respuesta
+                document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
+            }
+
+            //Ver links de un regalo
+            let verLinks = e.target.closest("button[accion=verLinks]");
+            if (verLinks) {
+                const datos = new FormData(); //Lo mandamos siempre con POST
+                datos.append("id",verLinks.value);
+                datos.append("accion","verLinks"); 
+                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
                 document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
             }
 

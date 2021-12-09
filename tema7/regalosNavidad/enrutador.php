@@ -71,6 +71,11 @@
                 ControladorRegalo::buscarRegalo();
             }
 
+             //Ver links
+             if ($_REQUEST['accion'] == "verLinks") {
+                ControladorRegalo::verLinks();
+            }
+
         }
     }
 
