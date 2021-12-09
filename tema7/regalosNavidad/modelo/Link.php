@@ -1,7 +1,7 @@
 <?php
     class Link {
         protected $id;
-        protected $id_regalo;
+        protected $id_regalo; //FK
         protected $nombre;
         protected $link;
         protected $precio;
