@@ -46,7 +46,7 @@
                         <button type="button" class="btn btn-warning" id="nuevoRegalo">Nuevo regalo</button>
                     </div>
                     <div class="col-md-3 m-1">
-                        <input class="form-control" type="text" placeholder="Buscar" aria-label="Search" name="buscar" id="buscar">
+                        <input class="form-control" type="text" placeholder="Buscar regalo" aria-label="Search" name="buscar" id="buscar">
                     </div>
                 </div>
                 
@@ -167,6 +167,39 @@
                 const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
                 document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
             }
+
+            //Botón BORRAR Link
+            let botonBorrarL = e.target.closest("button[accion=borrarLink]");
+		    if (botonBorrarL) {
+                const datos = new FormData(); //Lo mandamos siempre con POST
+                datos.append("accion","borrarLink"); //Acción para que PHP sepa de donde vienen la petición HTTP
+                datos.append("idL",botonBorrarL.value);                
+                datos.append("idR",botonBorrarL.getAttribute('regalo'));                
+                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
+                document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista
+		    }
+
+            //Form FORM nuevo link
+            let botonNuevoLink = e.target.closest("button[accion=nuevoLink]");
+            if (botonNuevoLink) {
+                const datos = new FormData(); //Lo mandamos siempre con POST
+                datos.append("accion","nuevoLink"); 
+                datos.append("idR",botonNuevoLink.value); 
+                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
+                document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
+            }
+
+            //Form INSERTAR linkd
+            let botonAñadirLinkForm = e.target.closest("button[accion=insertarLink]");
+            if (botonAñadirLinkForm) {
+                const datos = new FormData(document.getElementById("nuevoLinkForm")); //Lo mandamos siempre con POST
+                datos.append("accion","insertarLink"); 
+                datos.append("idR",botonAñadirLinkForm.getAttribute('regalo')); 
+                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
+                document.getElementById("contenido").innerHTML = await response.text(); //Lo que devuelve la Vista                
+            }
+
+
 
         });
         //Fin botón borrar noticia ---------------------------------

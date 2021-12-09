@@ -65,9 +65,53 @@
             $regalos = RegaloBD::getRegalosBusqueda($texto);
             $vistaR = new VistaRegalo();
             $vistaR->renderRegalos($regalos);
-
         }
 
+        public static function verLinks() {
+            $id = filtrado($_REQUEST['id']);
+            $links = LinkBD::getLinksRegalo($id);
+
+            $regalo = RegaloBD::getRegalo($id);
+            $vistaL = new VistaLinks();
+            $vistaL->renderLinks($links,$regalo);
+        }
+
+        public static function borrarLink() {
+            $idL = filtrado($_REQUEST['idL']);
+            $idR = filtrado($_REQUEST['idR']);
+
+            LinkBD::borrarLink($idL);
+
+            $links = LinkBD::getLinksRegalo($idR);
+            $regalo = RegaloBD::getRegalo($idR);
+            $vistaL = new VistaLinks();
+            $vistaL->renderLinks($links,$regalo);
+            
+        }
+
+        public static function nuevoLinkForm() {
+            $idR = filtrado($_REQUEST['idR']);
+            $regalo = RegaloBD::getRegalo($idR);
+            $vistaL = new VistaLinks();
+            $vistaL->renderFormNuevoLink($regalo);
+        }
+
+        public static function insertarLink() {
+            $idR = filtrado($_REQUEST['idR']);
+            $regalo = RegaloBD::getRegalo($idR);
+
+            $link['nombre'] = filtrado($_REQUEST['nombre']);
+            $link['link'] = filtrado($_REQUEST['link']);
+            $link['precio'] = filtrado($_REQUEST['precio']);
+            $link['prioridad'] = filtrado($_REQUEST['prioridad']);
+            
+            $linkObject = new Link(0,$idR, $link['nombre'],$link['link'],$link['precio'], $link['prioridad']);
+            LinkBD::insertarLink($linkObject);
+
+            $links = LinkBD::getLinksRegalo($idR);
+            $vistaL = new VistaLinks();
+            $vistaL->renderLinks($links,$regalo);
+        }
         
 
     }
