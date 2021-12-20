@@ -18,7 +18,6 @@ services:
   web:
     build: 
       context: .
-      dockerfile: Dockerfile.dockerfile
     container_name: docker-php-mongo
     volumes:
       - ./mongoPrueba:/var/www/html
@@ -34,8 +33,6 @@ services:
     command: composer install --ignore-platform-reqs
     volumes:
       - ./mongoPrueba:/app
-    depends_on:
-      - web
     
 volumes:
   mongo-volume:

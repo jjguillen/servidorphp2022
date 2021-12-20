@@ -12,7 +12,7 @@ class ConexionDB {
         try {
             //CONEXIÓN A MONGODB CLOUD ATLAS. Comentar esta línea para conectar en local.
             //$host = "mongodb+srv://admin:evhT1Hu8ZasF8llx@cluster0.qmwhh.mongodb.net/".$database."?retryWrites=true&w=majority";
-            $host = "mongodb://root:root@172.27.0.2:27017/"; //MongoDB en Docker
+            $host = "mongodb://root:root@172.19.0.2:27017/"; //MongoDB en Docker
             self::$conexion = (new Client($host))->{$database};
         } catch (Exception $e){
             echo $e->getMessage();
@@ -35,11 +35,17 @@ $insertOneResult = $conexion->usuarios->insertOne([
     'username' => 'admin',
     'email' => 'admin@example.com',
     'name' => 'Admin User',
+    'nombre' => [
+        'primerApellido' => 'Guillen',
+        'segundoApellido' => 'Benavente'
+    ]
 ]);
 
-$cursor = $conexion->usuarios->find(["username" => "admin"]);
+$cursor = $conexion->usuarios->find(["nombre.primerApellido" => "Guillen"]);
+
 foreach($cursor as $user) {
     echo $user['email']."<br>";
+    //$user = new Usuario($user['username'],);
 }
 
 ?>
