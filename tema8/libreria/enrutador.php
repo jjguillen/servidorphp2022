@@ -36,6 +36,23 @@
                 ControladorLibreria::mostrarInicio();
             }
 
+            if ($_REQUEST['accion'] == "buscarLibros") {
+                ControladorLibreria::mostrarBusqueda();
+            }
+
+            if ($_REQUEST['accion'] == "addFavoritos") {
+                ControladorLibreria::nuevoFavorito();
+            }
+
+            if ($_REQUEST['accion'] == "verFavoritos") {
+                ControladorLibreria::verFavoritos();
+            }
+
+            if ($_REQUEST['accion'] == "borrarFavorito") {
+                ControladorLibreria::borrarFavorito();
+            }
+
+
            
 
 

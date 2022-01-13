@@ -20,7 +20,7 @@ services:
       context: .
     container_name: docker-php-mongo
     volumes:
-      - ./pruebajson:/var/www/html
+      - ./libreria:/var/www/html
     ports:
       - "8080:80"
     networks:
@@ -32,7 +32,7 @@ services:
     image: composer:2
     command: composer install --ignore-platform-reqs
     volumes:
-      - ./pruebajson:/app
+      - ./libreria:/app
     
 volumes:
   mongo-volume:

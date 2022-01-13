@@ -1,12 +1,13 @@
 
-
-        </div> <!-- Ajax -->
-
-    </div>
+</div>
+</div>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 
 <!----------------------- AJAX -------------------->
 
@@ -17,47 +18,56 @@
     //Función que escucha los eventos
     function inicio() {
 
-        //Botón de borrar noticia
-        document.getElementById("ajax").addEventListener("click", async function(e)  {
-            e.preventDefault(); //Para no enviar el form
+        document.getElementById("buscar").addEventListener("click", async function(e) {
+            e.preventDefault();
 
-            //Botón BORRAR. Con closest buscamos el botón dentro del div 'ajax' más cercano a la ocurrencia del evento click
-            let botonBorrar = e.target.closest("button[accion=borrarN]");
-		    if (botonBorrar) {
-                const datos = new FormData(); //Lo mandamos siempre con POST
-                datos.append("accion","borrarN"); //Acción para que PHP sepa de donde vienen la petición HTTP
-                datos.append("id",botonBorrar.value);
-                
-                const response = await fetch("enrutador.php", { //Fetch hace la petición
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    body: datos
-                });                
-                //Tratar la respuesta
-                document.getElementById("ajax").innerHTML = await response.text(); //Lo que devuelve la Vista
-		    }
+            const datos = new FormData(document.getElementById('formBuscar'));
+            datos.append("accion","buscarLibros");
+            const response = await fetch("enrutador.php", {
+                method: 'POST',  body: datos
+            });
+            document.getElementById("contenedor").innerHTML = await response.text();
+        });
 
-            //Form INSERTAR
-            let enviarFormInsertar = e.target.closest("button[accion=nuevaNoticia]");
-            if (enviarFormInsertar) {
-                const datos = new FormData(document.getElementById("formNuevaNoticia")); //Lo mandamos siempre con POST
-                datos.append("accion","crearNoticia"); 
-                const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
-                //Tratar la respuesta
-                document.getElementById("ajax").innerHTML = await response.text(); //Lo que devuelve la Vista                
+        document.getElementById("contenedor").addEventListener("click", async function(e) {
+            e.preventDefault();
+            let addFavoritos = e.target.closest("form");
+
+            if (addFavoritos) {
+
+                const datos = new FormData(addFavoritos);
+                datos.append("accion", "addFavoritos");
+                const response = await fetch("enrutador.php", {
+                    method: 'POST', body: datos
+                });   
+                document.getElementById("mensaje").innerHTML = await response.text();   
+                $('#mensajeModal').modal('toggle')              
             }
-
-
         });
-        //Fin botón borrar noticia ---------------------------------
 
-        //Botón cargar formulario nueva noticia --------------------
-        document.getElementById("bNuevaNoticia").addEventListener("click", async function(e) {
-            const datos = new FormData(); //Lo mandamos siempre con POST
-            datos.append("accion","nuevaNoticia");
-            const response = await fetch("enrutador.php", { method: 'POST', body: datos });                
-            document.getElementById("ajax").innerHTML = await response.text(); //Lo que devuelve la Vista            
+        document.getElementById("verFavoritos").addEventListener("click", async function(e) {
+            const datos = new FormData();
+            datos.append("accion","verFavoritos");
+            const response = await fetch("enrutador.php", {
+                    method: 'POST', body: datos
+                });  
+            document.getElementById("contenedor").innerHTML = await response.text();
         });
-        //Fin botón cargar formulario nueva noticia ----------------
+
+        document.getElementById("contenedor").addEventListener("click", async function(e) {
+            e.preventDefault();
+            let borrarFavorito = e.target.closest("button[accion=borrarFavorito]");
+            if (borrarFavorito) {
+                const datos = new FormData();
+                datos.append("id",borrarFavorito.id);
+                datos.append("accion","borrarFavorito");
+                const response = await fetch("enrutador.php", {
+                        method: 'POST', body: datos
+                    });  
+                document.getElementById("contenedor").innerHTML = await response.text();
+            }
+        });
+        
     }
 
 </script>
