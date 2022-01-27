@@ -29,55 +29,95 @@ class Server {
       
         //Mis rutas van a ser /api/critoc/...
         
+        //Para que funcione .htaccess hay que activar el módulo mod_rewrite con:
+        //a2enmod rewrite
+        //Luego reiniciamos Apache
+        
         $uri = $_SERVER['REQUEST_URI'];
-        echo "JJ ".$uri;
         $method = $_SERVER['REQUEST_METHOD']; //GET, POST, PUT, DELETE
         $paths = explode('/', $this->paths($uri));
+    
+        //var_dump($paths);  
+        
+        array_shift($paths); // Quito ""
         array_shift($paths); // Quito la parte de 'api'
         $resource = array_shift($paths);
       
         if ($resource == 'criptoc') {
-            echo "Estás solicitando ".$resource;
-            /*
-            $name = array_shift($paths);
+            
+            $idt = array_shift($paths);
 	
-            if (empty($name)) {
+            if (empty($idt)) {
                 $this->handle_base($method);
             } else {
-                $this->handle_name($method, $name);
+                if ($idt == "id") {
+                    //Quitamos de la url /id/
+                    array_shift($paths);
+
+                    $id = array_shift($paths);
+                    $this->handle_id($method, $id);
+                } else if ($idt == "topvalue") {
+                    //Quitamos de la url /id/
+                    array_shift($paths);
+
+                    //Comprobamos que sea el verbo GET para GET /api/criptoc/topvalue
+                    echo "Mostrando criptos por valor";
+                } else if ( ($idt == "up") || ($idt == "down") ) {
+                    //Quitamos de la url /up o /down
+                    array_shift($paths);
+
+                    //Comprobamos que el verbo sea PUT
+                    $id = array_shift($paths);
+                    //$this->handle_updown($method, $id);
+                } else {
+                    //header('HTTP/1.1 404 Not Found');
+                    echo "No reconocida acción";
+                }
             }
-          */
+          
         } else {
-            // We only handle resources under 'clients'
             //header('HTTP/1.1 404 Not Found');
             echo "Fallo";
         } 
     }
         
+    private function paths($url) {
+        $uri = parse_url($url);
+        return $uri['path'];
+    }
+
     private function handle_base($method) {
         switch($method) {
         case 'GET':
-            $this->result();
+            //GET /api/criptoc
+            echo "Consultar criptomonedas";
+            break;
+        case 'POST':
+            //POST /api/criptoc
+            echo "Insertar nueva criptomoneda";
             break;
         default:
             header('HTTP/1.1 405 Method Not Allowed');
-            header('Allow: GET');
+            header('Allow: GET or POST');
             break;
         }
     }
 
-    private function handle_name($method, $name) {
+    private function handle_id($method, $id) {
         switch($method) {
         case 'PUT':
-            $this->create_contact($name);
+            //PUT /api/criptoc/id/<id>
+            echo "Modificar criptomoneda";
             break;
 
         case 'DELETE':
-            $this->delete_contact($name);
+            //DELETE /api/criptoc/id/<id>
+            echo "Borrando criptomoneda";
             break;
       
         case 'GET':
-            $this->display_contact($name);
+            //GET /api/criptoc/id/<id>
+            echo "Detalle de criptomoneda";
             break;
 
         default:
@@ -87,6 +127,8 @@ class Server {
         }
     }
 
+    
+    //-----------------------------------------------------------------------------------------
     private function create_contact($name){
         if (isset($this->contacts[$name])) {
             header('HTTP/1.1 409 Conflict');
@@ -122,11 +164,6 @@ class Server {
         }
     }
     
-    private function paths($url) {
-        $uri = parse_url($url);
-        return $uri['path'];
-    }
-    
     /**
      * Displays a list of all contacts.
      */
@@ -134,6 +171,9 @@ class Server {
         header('Content-type: application/json');
         echo json_encode($this->contacts);
     }
+
+    //--------------------------------------------------------------------------------------
+
   }
 
 $server = new Server;

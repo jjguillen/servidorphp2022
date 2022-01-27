@@ -20,7 +20,7 @@ services:
       context: .
     container_name: docker-php-mongo
     volumes:
-      - ./libreria:/var/www/html
+      - ./apiphpcripto:/var/www/html
     ports:
       - "8080:80"
     networks:
