@@ -1,0 +1,5 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /servidor.info/tema8/apiphpcripto/   
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* router.php/$0 [L]
