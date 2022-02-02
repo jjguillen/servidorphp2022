@@ -1,15 +1,5 @@
 <?php
 
-//AUTOLOAD
-function autocarga($clase){ 
-    $ruta = "./$clase.php"; 
-    if (file_exists($ruta)){ 
-        include_once $ruta; 
-    }
-} 
-spl_autoload_register("autocarga");
-
-
 class Server {
 
     public function serve() {
@@ -20,42 +10,42 @@ class Server {
         //a2enmod rewrite
         //Luego reiniciamos Apache
         
-        $uri = $_SERVER['REQUEST_URI'];     
+        $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD']; //GET, POST, PUT, DELETE
         $paths = explode('/', $this->paths($uri));
     
-        array_shift($paths); // Lo que hay antes
-        //array_shift($paths); // Quito "tema8"
-        //array_shift($paths); // Quito la parte de 'apiphpcripto'
-        array_shift($paths); // Quito "api"
-
-        // Nos quedamos con /criptoc/.....
+        //var_dump($paths);  
+        
+        array_shift($paths); // Quito ""
+        array_shift($paths); // Quito la parte de 'api'
         $resource = array_shift($paths);
-
+      
         if ($resource == 'criptoc') {
             
-            //Lo que venga después de /criptoc
             $idt = array_shift($paths);
 	
             if (empty($idt)) {
-                $this->manejarRaiz($method);
-            } else {                
+                $this->handle_base($method);
+            } else {
                 if ($idt == "id") {
+                    //Quitamos de la url /id/
+                    array_shift($paths);
+
                     $id = array_shift($paths);
-                    $this->manejarId($method, $id);
+                    $this->handle_id($method, $id);
                 } else if ($idt == "topvalue") {
                     //Quitamos de la url /id/
                     array_shift($paths);
 
                     //Comprobamos que sea el verbo GET para GET /api/criptoc/topvalue
-                    $this->mostrarTopValue();
+                    echo "Mostrando criptos por valor";
                 } else if ( ($idt == "up") || ($idt == "down") ) {
                     //Quitamos de la url /up o /down
                     array_shift($paths);
 
                     //Comprobamos que el verbo sea PUT
-                    $id = array_shift($paths);                   
-                    $this->modificarPrecio($method, $idt, $id);
+                    $id = array_shift($paths);
+                    //$this->handle_updown($method, $id);
                 } else {
                     //header('HTTP/1.1 404 Not Found');
                     echo "No reconocida acción";
@@ -73,17 +63,15 @@ class Server {
         return $uri['path'];
     }
 
-    private function manejarRaiz($method) {
+    private function handle_base($method) {
         switch($method) {
         case 'GET':
-            //GET /criptoc
-            header('Content-type:application/json;charset=utf-8');
-            echo CriptoDB::getCriptos();
+            //GET /api/criptoc
+            echo "Consultar criptomonedas";
             break;
         case 'POST':
-            //POST /criptoc
-            header('Content-type:application/json;charset=utf-8');
-            echo CriptoDB::insertarCripto();
+            //POST /api/criptoc
+            echo "Insertar nueva criptomoneda";
             break;
         default:
             header('HTTP/1.1 405 Method Not Allowed');
@@ -92,24 +80,21 @@ class Server {
         }
     }
 
-    private function manejarId($method, $id) {
+    private function handle_id($method, $id) {
         switch($method) {
         case 'PUT':
             //PUT /api/criptoc/id/<id>
-            header('Content-type:application/json;charset=utf-8');
-            echo CriptoDB::updateCripto($id);
+            echo "Modificar criptomoneda";
             break;
 
         case 'DELETE':
             //DELETE /api/criptoc/id/<id>
-            header('Content-type:application/json;charset=utf-8');
-            echo CriptoDB::deleteCripto($id);
+            echo "Borrando criptomoneda";
             break;
       
         case 'GET':
             //GET /api/criptoc/id/<id>
-            header('Content-type:application/json;charset=utf-8');
-            echo CriptoDB::getCripto($id);
+            echo "Detalle de criptomoneda";
             break;
 
         default:
@@ -119,21 +104,53 @@ class Server {
         }
     }
 
-    private function mostrarTopValue() {
-        header('Content-type:application/json;charset=utf-8');
-        echo CriptoDB::getTopValue();
-    }
-
-    private function modificarPrecio($method, $idt, $id) {
-        header('Content-type:application/json;charset=utf-8');
-        if ($idt == "up") {
-            echo CriptoDB::modificarPrecio($id,1);
-        } else if ($idt == "down") {
-            echo CriptoDB::modificarPrecio($id,-1);
-        } 
-    }
     
     //-----------------------------------------------------------------------------------------
+    private function create_contact($name){
+        if (isset($this->contacts[$name])) {
+            header('HTTP/1.1 409 Conflict');
+            return;
+        }
+        /* PUT requests need to be handled
+         * by reading from standard input.
+         */
+        $data = json_decode(file_get_contents('php://input'));
+        if (is_null($data)) {
+            header('HTTP/1.1 400 Bad Request');
+            $this->result();
+            return;
+        }
+        $this->contacts[$name] = $data; 
+        $this->result();
+    }
+    
+    private function delete_contact($name) {
+        if (isset($this->contacts[$name])) {
+            unset($this->contacts[$name]);
+            $this->result();
+        } else {
+            header('HTTP/1.1 404 Not Found');
+        }
+    }
+    
+    private function display_contact($name) {
+        if (array_key_exists($name, $this->contacts)) {
+            echo json_encode($this->contacts[$name]);
+        } else {
+            header('HTTP/1.1 404 Not Found');
+        }
+    }
+    
+    /**
+     * Displays a list of all contacts.
+     */
+    private function result() {
+        header('Content-type: application/json');
+        echo json_encode($this->contacts);
+    }
+
+    //--------------------------------------------------------------------------------------
+
   }
 
 $server = new Server;
